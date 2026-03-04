@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Navbar from "../../components/shared/Navbar";
-import Footer from "../../components/shared/Footer";
+import emailjs from "@emailjs/browser";
+import Swal from "sweetalert2";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,33 +11,36 @@ const Contact = () => {
     message: "",
   });
 
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log("Form submitted:", formData);
-    setSubmitted(true);
 
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-      });
-      setSubmitted(false);
-    }, 3000);
+    const form = e.target;
+
+    emailjs
+      .sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        form,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+      )
+      .then(
+        () => {
+          Swal.fire({
+            icon: "success",
+            title: "Message Sent!",
+            text: "We will contact you soon.",
+          });
+
+          form.reset();
+        },
+        () => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops!",
+            text: "Something went wrong.",
+          });
+        },
+      )
   };
 
   return (
@@ -104,25 +107,6 @@ const Contact = () => {
               Fill out the form below and our team will get back to you shortly
             </p>
 
-            {submitted && (
-              <div className="alert alert-success mb-6">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="stroke-current shrink-0 h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg>
-                <span>Thank you! Your message has been sent successfully.</span>
-              </div>
-            )}
-
             <form
               onSubmit={handleSubmit}
               className="bg-white rounded-lg shadow-lg p-8"
@@ -135,8 +119,7 @@ const Contact = () => {
                 <input
                   type="text"
                   name="name"
-                  value={formData.name}
-                  onChange={handleChange}
+                  //   value={formData.name}
                   required
                   className="input input-bordered w-full"
                   placeholder="Your full name"
@@ -151,8 +134,7 @@ const Contact = () => {
                 <input
                   type="email"
                   name="email"
-                  value={formData.email}
-                  onChange={handleChange}
+                  //   value={formData.email}
                   required
                   className="input input-bordered w-full"
                   placeholder="your@email.com"
@@ -167,8 +149,6 @@ const Contact = () => {
                 <input
                   type="tel"
                   name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
                   className="input input-bordered w-full"
                   placeholder="Your phone number"
                 />
@@ -182,8 +162,6 @@ const Contact = () => {
                 <input
                   type="text"
                   name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
                   required
                   className="input input-bordered w-full"
                   placeholder="What is this about?"
@@ -197,8 +175,6 @@ const Contact = () => {
                 </label>
                 <textarea
                   name="message"
-                  value={formData.message}
-                  onChange={handleChange}
                   required
                   className="textarea textarea-bordered w-full h-32"
                   placeholder="Your message here..."
@@ -225,7 +201,7 @@ const Contact = () => {
             {/* FAQ 1 */}
             <div className="collapse collapse-plus bg-white border border-gray-200">
               <input type="radio" name="faq-accordion" />
-              <div className="collapse-title text-xl font-bold">
+              <div className="collapse-title text-xl">
                 What is your booking lead time?
               </div>
               <div className="collapse-content">
@@ -240,7 +216,7 @@ const Contact = () => {
             {/* FAQ 2 */}
             <div className="collapse collapse-plus bg-white border border-gray-200">
               <input type="radio" name="faq-accordion" />
-              <div className="collapse-title text-xl font-bold">
+              <div className="collapse-title text-xl">
                 Do you provide insurance?
               </div>
               <div className="collapse-content">
@@ -255,7 +231,7 @@ const Contact = () => {
             {/* FAQ 3 */}
             <div className="collapse collapse-plus bg-white border border-gray-200">
               <input type="radio" name="faq-accordion" />
-              <div className="collapse-title text-xl font-bold">
+              <div className="collapse-title text-xl">
                 What documents do I need to rent a motorcycle?
               </div>
               <div className="collapse-content">
@@ -270,7 +246,7 @@ const Contact = () => {
             {/* FAQ 4 */}
             <div className="collapse collapse-plus bg-white border border-gray-200">
               <input type="radio" name="faq-accordion" />
-              <div className="collapse-title text-xl font-bold">
+              <div className="collapse-title text-xl">
                 Can I cancel or modify my booking?
               </div>
               <div className="collapse-content">
@@ -285,7 +261,7 @@ const Contact = () => {
             {/* FAQ 5 */}
             <div className="collapse collapse-plus bg-white border border-gray-200">
               <input type="radio" name="faq-accordion" />
-              <div className="collapse-title text-xl font-bold">
+              <div className="collapse-title text-xl">
                 How is the pricing calculated?
               </div>
               <div className="collapse-content">
