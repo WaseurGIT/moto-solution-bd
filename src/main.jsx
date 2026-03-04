@@ -7,6 +7,7 @@ import Root from "./routes/Root.jsx";
 import ErrorPage from "./components/shared/ErrorPage.jsx";
 import About from "./pages/public/About.jsx";
 import Contact from "./pages/public/Contact.jsx";
+import Login from "./pages/public/Login.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact/>
+      },
+      {
+        path: '/login',
+        element: <Login/>
       }
     ]
   },

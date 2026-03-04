@@ -29,8 +29,12 @@ const Navbar = () => {
           ))}
         </div>
         <div className="hidden md:flex space-x-4">
-          <button className="cursor-pointer">Login</button>
-          <button className="cursor-pointer">Sign Up</button>
+          <Link to="/login" className="cursor-pointer">
+            Login
+          </Link>
+          <Link to="/signup" className="cursor-pointer">
+            Sign Up
+          </Link>
         </div>
         {/* mobile */}
         <div className="md:hidden">
