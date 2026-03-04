@@ -1,4 +1,5 @@
 import { FcGoogle } from "react-icons/fc";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const handleEmailLogin = async (e) => {
@@ -121,12 +122,12 @@ const Login = () => {
             <div className="text-center">
               <p className="text-gray-600">
                 Don't have an account?{" "}
-                <a
-                  href="/signup"
+                <Link
+                  to="/register"
                   className="text-blue-600 hover:text-blue-700 font-semibold"
                 >
-                  Sign up here
-                </a>
+                  Signup
+                </Link>
               </p>
             </div>
           </div>

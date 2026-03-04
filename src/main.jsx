@@ -8,6 +8,7 @@ import ErrorPage from "./components/shared/ErrorPage.jsx";
 import About from "./pages/public/About.jsx";
 import Contact from "./pages/public/Contact.jsx";
 import Login from "./pages/public/Login.jsx";
+import Register from "./pages/public/Register.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login/>
+      },
+      {
+        path: '/register',
+        element: <Register/>
       }
     ]
   },

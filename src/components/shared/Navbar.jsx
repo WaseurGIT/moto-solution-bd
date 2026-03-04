@@ -32,9 +32,6 @@ const Navbar = () => {
           <Link to="/login" className="cursor-pointer">
             Login
           </Link>
-          <Link to="/signup" className="cursor-pointer">
-            Sign Up
-          </Link>
         </div>
         {/* mobile */}
         <div className="md:hidden">
@@ -67,7 +64,7 @@ const Navbar = () => {
           <Link to="/login" className="cursor-pointer block text-sm">
             Login
           </Link>
-          <Link to="/signup" className="cursor-pointer text-sm">
+          <Link to="/register" className="cursor-pointer text-sm">
             Sign Up
           </Link>
         </div>
