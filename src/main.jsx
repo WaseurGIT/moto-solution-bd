@@ -10,6 +10,7 @@ import Contact from "./pages/public/Contact.jsx";
 import Login from "./pages/public/Login.jsx";
 import Register from "./pages/public/Register.jsx";
 import ReviewForm from "./components/user/ReviewForm.jsx";
+import AddTechnicianForm from "./components/admin/AddTechnicianForm.jsx";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +41,11 @@ const router = createBrowserRouter([
       {
         path: "/reviewForm",
         element: <ReviewForm />,
-      }
+      },
+      {
+        path: "/addTechnician",
+        element: <AddTechnicianForm />,
+      },
     ],
   },
 ]);
