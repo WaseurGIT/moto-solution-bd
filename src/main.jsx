@@ -12,6 +12,7 @@ import Register from "./pages/public/Register.jsx";
 import ReviewForm from "./components/user/ReviewForm.jsx";
 import AddTechnicianForm from "./components/admin/AddTechnicianForm.jsx";
 import AuthProvider from "./context/AuthProvider.jsx";
+import BookingCard from "./components/user/BookingCard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "/addTechnician",
         element: <AddTechnicianForm />,
+      },
+      {
+        path: "/addBooking",
+        element: <BookingCard />,
       },
     ],
   },
