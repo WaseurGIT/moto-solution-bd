@@ -1,5 +1,6 @@
 import Banner from '../../components/shared/Banner';
 import Stats from '../../components/shared/Stats';
+import Technitians from '../../components/shared/Technitians';
 import Services from './Services';
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
           <Banner/> 
           <Stats/>
           <Services/>
+          <Technitians/>
         </div>
     );
 };
