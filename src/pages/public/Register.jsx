@@ -1,27 +1,68 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 
 const Register = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const { registerUser } = useAuth();
+  const [error, setError] = useState("");
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    const form = e.target;
+    const firstName = form.firstName.value;
+    const lastName = form.lastName.value;
+    const email = form.email.value;
+    const phone = form.phone.value;
+    const password = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    } else if (password.length < 6) {
+      setError("Password must be at least 6 characters long.");
+      return;
+    }
+
+    try {
+      const result = await registerUser(email, password, firstName, lastName);
+      const usereData = {
+        name: `${firstName} ${lastName}`,
+        email: result.user.email,
+        uid: result.user.uid,
+        phone: phone,
+      };
+      await axios.post("http://localhost:5000/users", usereData);
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "success",
+        title: `Welcome ${firstName}! Account created successfully.`,
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      form.reset();
+      navigate("/");
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+      });
+      setError("Registration failed. Please try again.");
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4 py-12">
+    <div className="min-h-screen flex items-center justify-center p-4 py-12">
       <div className="bg-white rounded-2xl shadow-2xl overflow-hidden max-w-5xl w-full">
         <div className="grid md:grid-cols-2 gap-0">
           {/* Left Side - Image */}
@@ -64,10 +105,14 @@ const Register = () => {
             </div>
 
             {/* Error Message */}
-            
+            {error && (
+              <div className="bg-red-100 text-red-700 p-3 rounded mb-4">
+                {error}
+              </div>
+            )}
 
             {/* Register Form */}
-            <form onSubmit={handleRegister} className="space-y-4 mb-6">
+            <form onSubmit={handleRegister} className="space-y-2 mb-4">
               {/* Name Fields */}
               <div className="grid grid-cols-2 gap-3">
                 <div>
@@ -96,7 +141,6 @@ const Register = () => {
                 </div>
               </div>
 
-              {/* Email Input */}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Email Address
@@ -110,7 +154,6 @@ const Register = () => {
                 />
               </div>
 
-              {/* Phone Input */}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Phone Number
@@ -123,7 +166,6 @@ const Register = () => {
                 />
               </div>
 
-              {/* Password Input */}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Password
@@ -141,7 +183,7 @@ const Register = () => {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-3 text-gray-600"
                   >
-                    {showPassword ? "👁️" : "👁️‍🗨️"}
+                    {showPassword ? <IoIosEyeOff /> : <IoIosEye />}
                   </button>
                 </div>
                 <p className="text-xs text-gray-500 mt-1">
@@ -149,7 +191,6 @@ const Register = () => {
                 </p>
               </div>
 
-              {/* Confirm Password Input */}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Confirm Password
@@ -167,12 +208,11 @@ const Register = () => {
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                     className="absolute right-3 top-3 text-gray-600"
                   >
-                    {showConfirmPassword ? "👁️" : "👁️‍🗨️"}
+                    {showConfirmPassword ? <IoIosEyeOff /> : <IoIosEye />}
                   </button>
                 </div>
               </div>
 
-              {/* Terms & Conditions */}
               <label className="flex items-start gap-3 cursor-pointer my-4">
                 <input
                   type="checkbox"
@@ -198,23 +238,11 @@ const Register = () => {
                 </span>
               </label>
 
-              {/* Register Button */}
-              <button
-                type="submit"
-                className="btn btn-primary w-full mt-4"
-              >
-                  "Create Account"
+              <button type="submit" className="btn btn-primary w-full mt-4">
+                Create Account
               </button>
             </form>
 
-            {/* Divider */}
-            <div className="flex items-center gap-4 mb-6">
-              <div className="flex-1 border-t border-gray-300"></div>
-              <span className="text-gray-500 text-sm">OR</span>
-              <div className="flex-1 border-t border-gray-300"></div>
-            </div>
-
-            {/* Login Link */}
             <div className="text-center">
               <p className="text-gray-600">
                 Already have an account?{" "}
