@@ -6,7 +6,7 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    axios.get("/reviews.json").then((res) => {
+    axios.get("http://localhost:5000/reviews").then((res) => {
       setReviews(res.data);
     });
   }, []);
@@ -47,14 +47,10 @@ const Reviews = () => {
                 </span>
               </div>
 
-              <p className="text-gray-700 mb-4 italic">
-                "{review.review}"
-              </p>
+              <p className="text-gray-700 mb-4 italic">"{review.review}"</p>
 
               <div className="border-t pt-4">
-                <p className="font-semibold text-gray-900">
-                  {review.name}
-                </p>
+                <p className="font-semibold text-gray-900">{review.name}</p>
               </div>
             </div>
           ))}

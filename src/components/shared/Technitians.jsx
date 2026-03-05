@@ -5,7 +5,7 @@ const Technitians = () => {
   const [technicians, setTechnicians] = useState([]);
 
   useEffect(() => {
-    axios.get("/technitians.json").then((response) => {
+    axios.get("http://localhost:5000/technicians").then((response) => {
       setTechnicians(response.data);
     });
   }, []);
