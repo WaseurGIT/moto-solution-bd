@@ -17,8 +17,6 @@ const ReviewForm = () => {
       review,
       rating,
     };
-
-    console.log("Review Data:", reviewData);
     try {
       axios.post("http://localhost:5000/reviews", reviewData).then((res) => {
         Swal.fire({
