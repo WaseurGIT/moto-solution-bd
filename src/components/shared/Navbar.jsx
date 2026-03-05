@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { FaMotorcycle } from "react-icons/fa";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiLogOut } from "react-icons/fi";
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, logOutUser } = useAuth();
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const links = [
@@ -15,6 +17,28 @@ const Navbar = () => {
     { path: "/contact", label: "Contact" },
     { path: "/addTechnician", label: "Add Technician" },
   ];
+
+  const handleLogout = async () => {
+    try {
+      await logOutUser();
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "success",
+        title: "Logged out successfully",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      navigate("/");
+      setIsMenuOpen(false);
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: error.message,
+      });
+    }
+  };
 
   return (
     <div className="max-w-7xl mx-auto sticky top-2 rounded-full z-50 bg-white shadow">
@@ -47,7 +71,7 @@ const Navbar = () => {
 
               {/* Logout */}
               <button
-                onClick={logOutUser}
+                onClick={handleLogout}
                 className="text-red-500 flex items-center gap-1"
               >
                 <FiLogOut />
@@ -106,7 +130,7 @@ const Navbar = () => {
               />
 
               <button
-                onClick={logOutUser}
+                onClick={handleLogout}
                 className="text-red-500 flex items-center gap-1"
               >
                 <FiLogOut />
