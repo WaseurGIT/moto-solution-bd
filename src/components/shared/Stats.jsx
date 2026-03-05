@@ -2,27 +2,27 @@ import React from "react";
 
 const Stats = () => {
   return (
-    <div>
-      <div className="flex justify-center max-w-7xl mx-auto my-12">
-        <div className="flex items-center justify-between gap-66 mt-12 max-w-7xl">
-          <div className="flex flex-col items-center justify-center">
-            <div className="text-2xl md:text-4xl font-bold text-blue-400">
-              500+
-            </div>
-            <p className="text-sm">Happy Customers</p>
+    <div className="max-w-7xl mx-auto my-12 px-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+        <div className="flex flex-col items-center">
+          <div className="text-3xl md:text-4xl font-bold text-blue-500">
+            500+
           </div>
-          <div className="flex flex-col items-center justify-center">
-            <div className="text-2xl md:text-4xl font-bold text-blue-400">
-              1000+
-            </div>
-            <p className="text-sm ">Bookings</p>
+          <p className="text-sm md:text-base text-gray-600">Happy Customers</p>
+        </div>
+
+        <div className="flex flex-col items-center">
+          <div className="text-3xl md:text-4xl font-bold text-blue-500">
+            1000+
           </div>
-          <div className="flex flex-col items-center justify-center">
-            <div className="text-2xl md:text-4xl font-bold text-blue-400">
-              150+
-            </div>
-            <p className="text-sm ">Bikes</p>
+          <p className="text-sm md:text-base text-gray-600">Bookings</p>
+        </div>
+
+        <div className="flex flex-col items-center">
+          <div className="text-3xl md:text-4xl font-bold text-blue-500">
+            150+
           </div>
+          <p className="text-sm md:text-base text-gray-600">Bikes</p>
         </div>
       </div>
     </div>
