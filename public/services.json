@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "title": "Bike Repair",
+    "description": "Professional bike repair services for all types of motorcycles.",
+    "image": "https://i.ibb.co.com/4nQWy7GR/image.png",
+    "services": [
+      "Engine diagnostics and repair",
+      "Brake system repair",
+      "Chain and sprocket replacement",
+      "Clutch adjustment and repair",
+      "Electrical system troubleshooting",
+      "Battery replacement"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Car Repair",
+    "description": "Expert car repair services to keep your vehicle running smoothly.",
+    "image": "https://i.ibb.co.com/J0ZKt9Y/image.png",
+    "services": [
+      "Engine repair and diagnostics",
+      "Brake pad replacement",
+      "Transmission service",
+      "Suspension repair",
+      "Electrical system repair",
+      "Battery and alternator replacement"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Bike Washing",
+    "description": "Comprehensive bike washing services to keep your motorcycle looking its best.",
+    "image": "https://i.ibb.co.com/q30kGTr8/image.png",
+    "services": [
+      "Full body wash",
+      "Chain cleaning and lubrication",
+      "Wheel and rim cleaning",
+      "Seat and tank polishing",
+      "Engine area cleaning",
+      "Dry wipe and shine finish"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Car Washing",
+    "description": "Professional car washing services to maintain the shine and cleanliness of your vehicle.",
+    "image": "https://i.ibb.co.com/GfDvGPJq/image.png",
+    "services": [
+      "Exterior foam wash",
+      "Interior vacuum cleaning",
+      "Dashboard and seat cleaning",
+      "Tire and rim polishing",
+      "Glass cleaning",
+      "Wax polish finish"
+    ]
+  }
+]
