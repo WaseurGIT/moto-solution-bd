@@ -9,6 +9,7 @@ import About from "./pages/public/About.jsx";
 import Contact from "./pages/public/Contact.jsx";
 import Login from "./pages/public/Login.jsx";
 import Register from "./pages/public/Register.jsx";
+import ReviewForm from "./components/user/ReviewForm.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,22 +22,26 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/about',
-        element: <About />
+        path: "/about",
+        element: <About />,
       },
       {
         path: "/contact",
-        element: <Contact/>
+        element: <Contact />,
       },
       {
-        path: '/login',
-        element: <Login/>
+        path: "/login",
+        element: <Login />,
       },
       {
-        path: '/register',
-        element: <Register/>
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/reviewForm",
+        element: <ReviewForm />,
       }
-    ]
+    ],
   },
 ]);
 

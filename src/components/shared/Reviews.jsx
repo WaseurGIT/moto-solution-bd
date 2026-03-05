@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Star } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -54,6 +55,14 @@ const Reviews = () => {
               </div>
             </div>
           ))}
+        </div>
+        <div className="mt-8 text-center">
+          <Link
+            to="/reviewForm"
+            className="bg-blue-500 text-white py-2 px-10 rounded-lg hover:bg-blue-600 transition-colors"
+          >
+            Add Review
+          </Link>
         </div>
       </div>
     </section>
