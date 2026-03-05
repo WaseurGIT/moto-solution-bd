@@ -11,6 +11,7 @@ import Login from "./pages/public/Login.jsx";
 import Register from "./pages/public/Register.jsx";
 import ReviewForm from "./components/user/ReviewForm.jsx";
 import AddTechnicianForm from "./components/admin/AddTechnicianForm.jsx";
+import { AuthContext } from "./context/AuthProvider.jsx";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthContext>
+      <RouterProvider router={router} />
+    </AuthContext>
   </StrictMode>,
 );
