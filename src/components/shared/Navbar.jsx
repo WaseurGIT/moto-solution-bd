@@ -131,9 +131,9 @@ const Navbar = () => {
 
               <button
                 onClick={handleLogout}
-                className="text-red-500 flex items-center gap-1"
+                className="text-red-500 cursor-pointer flex items-center gap-1"
               >
-                <FiLogOut />
+                <FiLogOut className="cursor-pointer" />
                 Logout
               </button>
             </>

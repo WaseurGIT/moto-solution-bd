@@ -127,6 +127,7 @@ const Login = () => {
                 </label>
                 <input
                   type="email"
+                  name="email"
                   placeholder="Enter your email"
                   required
                   className="input input-bordered w-full focus:input-primary"
@@ -141,6 +142,8 @@ const Login = () => {
                   <input
                     placeholder="Enter your password"
                     required
+                    type="password"
+                    name="password"
                     className="input input-bordered w-full focus:input-primary"
                   />
                 </div>
