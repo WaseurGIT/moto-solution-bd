@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import { FaMotorcycle } from "react-icons/fa";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router-dom";
+import { FiLogOut } from "react-icons/fi";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
+  const { user, logOutUser } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const links = [
     { path: "/", label: "Home" },
     { path: "/about", label: "About US" },
@@ -14,27 +18,53 @@ const Navbar = () => {
 
   return (
     <div className="max-w-7xl mx-auto sticky top-2 rounded-full z-50 bg-white shadow">
-      <div className="flex items-center justify-between px-4 py-2 ">
-        {/* logo */}
-        <div className="flex items-center justify-center gap-2">
+      <div className="flex items-center justify-between px-4 py-2">
+        {/* Logo */}
+        <div className="flex items-center gap-2">
           <FaMotorcycle className="text-4xl text-blue-500" />
           <h1 className="text-xl font-bold">Moto Solution BD</h1>
         </div>
 
-        {/* desktop */}
-        <div className="hidden md:flex space-x-4">
+        {/* Desktop Links */}
+        <div className="hidden md:flex space-x-4 items-center">
           {links.map((link) => (
             <Link key={link.path} to={link.path} className="text-sm">
               {link.label}
             </Link>
           ))}
+
+          {user ? (
+            <>
+              {/* Avatar */}
+              <img
+                src={
+                  user.photoURL ||
+                  "https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
+                }
+                alt="avatar"
+                className="w-8 h-8 rounded-full border"
+              />
+
+              {/* Logout */}
+              <button
+                onClick={logOutUser}
+                className="text-red-500 flex items-center gap-1"
+              >
+                <FiLogOut />
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link
+              to="/login"
+              className="text-sm bg-blue-500 text-white py-2 px-4 rounded-full"
+            >
+              Login
+            </Link>
+          )}
         </div>
-        <div className="hidden md:flex space-x-4">
-          <Link to="/login" className="cursor-pointer">
-            Login
-          </Link>
-        </div>
-        {/* mobile */}
+
+        {/* Mobile Menu Icon */}
         <div className="md:hidden">
           {isMenuOpen ? (
             <RxCross1
@@ -50,6 +80,7 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-gray-100 px-4 pb-4 space-y-3">
           {links.map((link) => (
@@ -62,12 +93,36 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-          <Link to="/login" className="cursor-pointer block text-sm">
-            Login
-          </Link>
-          <Link to="/register" className="cursor-pointer text-sm">
-            Sign Up
-          </Link>
+
+          {user ? (
+            <>
+              <img
+                src={
+                  user.photoURL ||
+                  "https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
+                }
+                alt="avatar"
+                className="w-10 h-10 rounded-full"
+              />
+
+              <button
+                onClick={logOutUser}
+                className="text-red-500 flex items-center gap-1"
+              >
+                <FiLogOut />
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="block text-sm">
+                Login
+              </Link>
+              <Link to="/register" className="block text-sm">
+                Sign Up
+              </Link>
+            </>
+          )}
         </div>
       )}
     </div>

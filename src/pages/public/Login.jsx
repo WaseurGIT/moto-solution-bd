@@ -1,12 +1,78 @@
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const Login = () => {
+  const { loginUser, googleLoginUser } = useAuth();
+  const navigate = useNavigate();
+
   const handleEmailLogin = async (e) => {
     e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    try {
+      const result = await loginUser(email, password);
+      const userData = {
+        name: result.user.displayName,
+        email: result.user.email,
+        uid: result.user.uid,
+      };
+      await axios.post("http://localhost:5000/users", userData).then((res) => {
+        Swal.fire({
+          toast: true,
+          position: "top-end",
+          icon: "success",
+          title: `Welcome ${result.user.displayName}`,
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        form.reset();
+        navigate("/");
+      });
+    } catch (error) {
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "error",
+        title: "Login failed. Please try again.",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }
   };
 
-  const handleGoogleLogin = async () => {};
+  const handleGoogleLogin = async () => {
+    try {
+      const res = await googleLoginUser();
+      const userData = {
+        name: res.user.displayName,
+        email: res.user.email,
+        uid: res.user.uid,
+      };
+      await axios.post("http://localhost:5000/users", userData);
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "success",
+        title: `Welcome ${res.user.displayName}`,
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      navigate("/");
+    } catch (error) {
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "error",
+        title: "Google login failed. Please try again.",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }
+  };
 
   return (
     <div className="my-12 min-h-screen flex items-center justify-center p-4">
@@ -55,7 +121,6 @@ const Login = () => {
 
             {/* Email Login Form */}
             <form onSubmit={handleEmailLogin} className="space-y-5 mb-6">
-              {/* Email Input */}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Email Address
@@ -68,7 +133,6 @@ const Login = () => {
                 />
               </div>
 
-              {/* Password Input */}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                   Password
@@ -82,7 +146,6 @@ const Login = () => {
                 </div>
               </div>
 
-              {/* Remember Me & Forgot Password */}
               <div className="flex items-center justify-between">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input type="checkbox" className="checkbox checkbox-sm" />
@@ -96,20 +159,17 @@ const Login = () => {
                 </a>
               </div>
 
-              {/* Login Button */}
               <button type="submit" className="btn btn-primary w-full mt-4">
                 "Sign In"
               </button>
             </form>
 
-            {/* Divider */}
             <div className="flex items-center gap-4 mb-6">
               <div className="flex-1 border-t border-gray-300"></div>
               <span className="text-gray-500 text-sm">OR</span>
               <div className="flex-1 border-t border-gray-300"></div>
             </div>
 
-            {/* Google Login Button */}
             <button
               onClick={handleGoogleLogin}
               className="btn btn-outline btn-lg w-full gap-2 mb-6"
@@ -118,7 +178,6 @@ const Login = () => {
               Continue with Google
             </button>
 
-            {/* Sign Up Link */}
             <div className="text-center">
               <p className="text-gray-600">
                 Don't have an account?{" "}
