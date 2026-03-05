@@ -3,36 +3,36 @@
     "id": 1,
     "name": "Rahim Uddin",
     "role": "Senior Bike Technician",
-    "img": "https://images.unsplash.com/photo-1507238691154-1bfc1b8ba6f3?auto=format&fit=crop&w=600&q=80"
+    "img": "https://images.unsplash.com/photo-1504198266287-1659872e6590?q=80&w=800"
   },
   {
     "id": 2,
     "name": "Karim Hasan",
     "role": "Car Repair Specialist",
-    "img": "https://images.unsplash.com/photo-1507251531008-e90d23f8fda7?auto=format&fit=crop&w=600&q=80"
+    "img": "https://images.unsplash.com/photo-1632823471565-1ec7a1f4f1e6?q=80&w=800"
   },
   {
     "id": 3,
     "name": "Sabbir Ahmed",
     "role": "Engine Diagnostic Expert",
-    "img": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
+    "img": "https://images.unsplash.com/photo-1621905252507-b35492cc74b5?q=80&w=800"
   },
   {
     "id": 4,
     "name": "Mahmudul Islam",
     "role": "Bike Maintenance Technician",
-    "img": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80"
+    "img": "https://images.unsplash.com/photo-1581091870621-8a3d7b9c9d8c?q=80&w=800"
   },
   {
     "id": 5,
     "name": "Tanvir Hossain",
     "role": "Car Washing Specialist",
-    "img": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80"
+    "img": "https://images.unsplash.com/photo-1607863680198-23d4b2565df0?q=80&w=800"
   },
   {
     "id": 6,
     "name": "Rafiq Khan",
     "role": "Electrical System Technician",
-    "img": "https://images.unsplash.com/photo-1507251531008-e90d23f8fda7?auto=format&fit=crop&w=600&q=80"
+    "img": "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?q=80&w=800"
   }
 ]
