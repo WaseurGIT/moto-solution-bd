@@ -3,9 +3,11 @@ import Swal from "sweetalert2";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import useAuth from "../../hooks/useAuth";
 gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
+  const { user } = useAuth();
   useGSAP(() => {
     gsap.from("#contactHero", {
       scrollTrigger: {
@@ -48,15 +50,6 @@ const Contact = () => {
       duration: 1,
     });
   }, []);
-
-  // const [formData, setFormData] = useState({
-  //   name: "",
-  //   email: "",
-  //   phone: "",
-  //   subject: "",
-  //   message: "",
-  // });
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -91,7 +84,6 @@ const Contact = () => {
 
   return (
     <div className="max-w-7xl mx-auto my-12">
-      {/* Hero Section */}
       <section
         id="contactHero"
         className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20"
@@ -107,11 +99,9 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Contact Information Cards */}
       <section id="contactInfo" className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
-            {/* Email Card */}
             <div className="bg-white rounded-lg shadow-lg p-8 text-center">
               <div className="text-5xl mb-4">✉️</div>
               <h3 className="text-2xl font-bold mb-3">Email</h3>
@@ -122,7 +112,6 @@ const Contact = () => {
               </p>
             </div>
 
-            {/* Phone Card */}
             <div className="bg-white rounded-lg shadow-lg p-8 text-center">
               <div className="text-5xl mb-4">📱</div>
               <h3 className="text-2xl font-bold mb-3">Phone</h3>
@@ -131,7 +120,6 @@ const Contact = () => {
               <p className="text-sm text-gray-500 mt-4">Available 24/7</p>
             </div>
 
-            {/* Location Card */}
             <div className="bg-white rounded-lg shadow-lg p-8 text-center">
               <div className="text-5xl mb-4">📍</div>
               <h3 className="text-2xl font-bold mb-3">Location</h3>
@@ -145,7 +133,6 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Contact Form Section */}
       <section id="contactForm" className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
@@ -160,7 +147,6 @@ const Contact = () => {
               onSubmit={handleSubmit}
               className="bg-white rounded-lg shadow-lg p-8"
             >
-              {/* Name Field */}
               <div className="mb-6">
                 <label className="block text-gray-700 font-bold mb-2">
                   Name
@@ -168,14 +154,13 @@ const Contact = () => {
                 <input
                   type="text"
                   name="name"
-                  //   value={formData.name}
+                  value={user?.displayName}
                   required
                   className="input input-bordered w-full"
                   placeholder="Your full name"
                 />
               </div>
 
-              {/* Email Field */}
               <div className="mb-6">
                 <label className="block text-gray-700 font-bold mb-2">
                   Email
@@ -183,14 +168,13 @@ const Contact = () => {
                 <input
                   type="email"
                   name="email"
-                  //   value={formData.email}
+                  defaultValue={user?.email}
                   required
                   className="input input-bordered w-full"
                   placeholder="your@email.com"
                 />
               </div>
 
-              {/* Phone Field */}
               <div className="mb-6">
                 <label className="block text-gray-700 font-bold mb-2">
                   Phone
@@ -198,12 +182,12 @@ const Contact = () => {
                 <input
                   type="tel"
                   name="phone"
+                  defaultValue={user?.phone}
                   className="input input-bordered w-full"
                   placeholder="Your phone number"
                 />
               </div>
 
-              {/* Subject Field */}
               <div className="mb-6">
                 <label className="block text-gray-700 font-bold mb-2">
                   Subject
@@ -217,7 +201,6 @@ const Contact = () => {
                 />
               </div>
 
-              {/* Message Field */}
               <div className="mb-6">
                 <label className="block text-gray-700 font-bold mb-2">
                   Message
@@ -230,7 +213,6 @@ const Contact = () => {
                 ></textarea>
               </div>
 
-              {/* Submit Button */}
               <button type="submit" className="btn btn-primary w-full">
                 Send Message
               </button>
@@ -239,7 +221,6 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
       <section id="faq" className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-12 text-center">
@@ -247,7 +228,6 @@ const Contact = () => {
           </h2>
 
           <div className="max-w-2xl mx-auto space-y-4">
-            {/* FAQ 1 */}
             <div className="collapse collapse-plus bg-white border border-gray-200">
               <input type="radio" name="faq-accordion" />
               <div className="collapse-title text-xl">
@@ -262,7 +242,6 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* FAQ 2 */}
             <div className="collapse collapse-plus bg-white border border-gray-200">
               <input type="radio" name="faq-accordion" />
               <div className="collapse-title text-xl">
@@ -277,7 +256,6 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* FAQ 3 */}
             <div className="collapse collapse-plus bg-white border border-gray-200">
               <input type="radio" name="faq-accordion" />
               <div className="collapse-title text-xl">
@@ -292,7 +270,6 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* FAQ 4 */}
             <div className="collapse collapse-plus bg-white border border-gray-200">
               <input type="radio" name="faq-accordion" />
               <div className="collapse-title text-xl">
@@ -307,7 +284,6 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* FAQ 5 */}
             <div className="collapse collapse-plus bg-white border border-gray-200">
               <input type="radio" name="faq-accordion" />
               <div className="collapse-title text-xl">

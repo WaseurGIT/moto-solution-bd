@@ -50,7 +50,6 @@ const About = () => {
 
   return (
     <div className="my-12 mx-auto max-w-7xl">
-      {/* Hero Section */}
       <section
         id="bannerHero"
         className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20"
@@ -66,7 +65,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Mission & Vision */}
       <section id="mission" className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8">
@@ -81,7 +79,6 @@ const About = () => {
               </p>
             </div>
 
-            {/* Vision */}
             <div className="bg-white rounded-lg shadow-lg p-8">
               <div className="text-4xl mb-4">🌟</div>
               <h2 className="text-2xl font-bold mb-4">Our Vision</h2>
@@ -95,7 +92,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Why Choose Us */}
       <section id="features" className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-12 text-center">
@@ -103,7 +99,6 @@ const About = () => {
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {/* Feature 1 */}
             <div className="text-center">
               <div className="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                 <span className="text-4xl">🏍️</span>
@@ -115,7 +110,6 @@ const About = () => {
               </p>
             </div>
 
-            {/* Feature 2 */}
             <div className="text-center">
               <div className="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                 <span className="text-4xl">💰</span>
@@ -127,7 +121,6 @@ const About = () => {
               </p>
             </div>
 
-            {/* Feature 3 */}
             <div className="text-center">
               <div className="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                 <span className="text-4xl">⚡</span>
@@ -139,7 +132,6 @@ const About = () => {
               </p>
             </div>
 
-            {/* Feature 4 */}
             <div className="text-center">
               <div className="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                 <span className="text-4xl">🛡️</span>
@@ -150,7 +142,6 @@ const About = () => {
               </p>
             </div>
 
-            {/* Feature 5 */}
             <div className="text-center">
               <div className="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                 <span className="text-4xl">👥</span>
@@ -161,7 +152,6 @@ const About = () => {
               </p>
             </div>
 
-            {/* Feature 6 */}
             <div className="text-center">
               <div className="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                 <span className="text-4xl">🌍</span>
@@ -175,7 +165,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
       <section id="stats" className=" py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 text-center">
