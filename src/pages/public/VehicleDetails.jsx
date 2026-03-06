@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -25,14 +25,6 @@ const VehicleDetails = () => {
       });
   }, [id]);
 
-  const handleBooking = () => {
-    if (!user) {
-      navigate("/login");
-      return;
-    }
-    // Handle booking logic here
-    console.log("Booking pressed for vehicle:", vehicle);
-  };
 
   const handleDelete = () => {
     Swal.fire({
@@ -147,17 +139,18 @@ const VehicleDetails = () => {
               </div>
             </div>
 
-            <button
-              onClick={handleBooking}
+            <Link
+              to={`/vehicleBooking/${vehicle._id}`}
+              state={vehicle}
               disabled={!user}
-              className={`w-full py-4 rounded-xl font-bold text-lg transition-all duration-300 ${
+              className={`w-full py-3 px-50 rounded-xl font-bold text-lg transition-all duration-300 ${
                 user
                   ? "bg-gradient-to-r from-green-500 to-green-600 text-white hover:shadow-lg hover:scale-105 cursor-pointer"
                   : "bg-gray-300 text-gray-600 cursor-not-allowed"
               }`}
             >
-              {user ? "🚀 Book This Vehicle" : "🔒 Login to Book"}
-            </button>
+              {user ? "Book This Vehicle" : "Login to Book"}
+            </Link>
           </div>
         </div>
 

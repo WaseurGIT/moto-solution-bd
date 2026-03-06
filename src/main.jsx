@@ -15,6 +15,7 @@ import AuthProvider from "./context/AuthProvider.jsx";
 import BookingCard from "./components/user/BookingCard.jsx";
 import Vehicles from "./pages/public/Vehicles.jsx";
 import VehicleDetails from "./pages/public/VehicleDetails.jsx";
+import VehicleBooking from "./pages/public/VehicleBooking.jsx";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "/vehicles/:id",
         element: <VehicleDetails />,
+      },
+      {
+        path: '/vehicleBooking/:id',
+        element: <VehicleBooking />,
       },
       {
         path: "/login",
