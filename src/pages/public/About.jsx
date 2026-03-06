@@ -1,12 +1,60 @@
-import React from "react";
-import Navbar from "../../components/shared/Navbar";
-import Footer from "../../components/shared/Footer";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
+  useGSAP(() => {
+    gsap.from("#bannerHero", {
+      scrollTrigger: {
+        trigger: "#bannerHero",
+        start: "top 80%",
+        end: "#mission",
+      },
+      opacity: 0,
+      y: 100,
+      duration: 1,
+    });
+
+    gsap.from("#mission", {
+      scrollTrigger: {
+        trigger: "#mission",
+        start: "top 80%",
+        end: "#features",
+      },
+      opacity: 0,
+      y: 100,
+      duration: 1,
+    });
+    gsap.from("#features", {
+      scrollTrigger: {
+        trigger: "#features",
+        start: "top 80%",
+        end: "#stats",
+      },
+      opacity: 0,
+      y: 100,
+      duration: 1,
+    });
+    gsap.from("#stats", {
+      scrollTrigger: {
+        trigger: "#stats",
+        start: "top 80%",
+        end: "top 60% ",
+      },
+      opacity: 0,
+      y: 100,
+      duration: 1,
+    });
+  }, []);
+
   return (
     <div className="my-12 mx-auto max-w-7xl">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
+      <section
+        id="bannerHero"
+        className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20"
+      >
         <div className="container mx-auto px-4">
           <div className="max-w-3xl">
             <h1 className="text-5xl font-bold mb-4">About Moto Solution</h1>
@@ -19,7 +67,7 @@ const About = () => {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-16">
+      <section id="mission" className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8">
             {/* Mission */}
@@ -48,7 +96,7 @@ const About = () => {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-16">
+      <section id="features" className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-12 text-center">
             Why Choose Us?
@@ -128,7 +176,7 @@ const About = () => {
       </section>
 
       {/* Stats Section */}
-      <section className=" py-16">
+      <section id="stats" className=" py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>

@@ -1,28 +1,41 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
+import gsap from "gsap";
+import { useEffect, useRef } from "react";
 const Banner = () => {
+  const bannerText = useRef(null);
+
+  useEffect(() => {
+    gsap.fromTo(
+      bannerText.current,
+      {
+        opacity: 0,
+        y: 80,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+      },
+    );
+  });
+
   return (
     <div className="max-w-7xl mx-auto relative h-96 md:h-[600px] overflow-hidden rounded-lg shadow-2xl my-12">
-      {/* Background Image with Overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: `url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=600&fit=crop')`,
         }}
       >
-        {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/50 bg-opacity-40"></div>
 
-        {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent opacity-60"></div>
       </div>
 
       {/* Content */}
       <div className="relative h-full flex items-center justify-center">
         <div className="container mx-auto px-4 md:px-8 flex flex-col items-center justify-center text-center max-w-3xl">
-          <div className="max-w-2xl">
-            {/* Badge */}
+          <div ref={bannerText} className="max-w-2xl">
             <div className="mt-6 inline-block text-white px-4 py-2 rounded-full mb-4 font-semibold">
               🔧 Expert Motorcycle Service
             </div>
@@ -41,19 +54,6 @@ const Banner = () => {
               motorcycle brands. Trust our expert technicians to keep your ride
               in perfect condition.
             </p>
-
-            {/* CTA Buttons */}
-            {/* <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <Link to="/services" className="btn btn-primary btn-lg">
-                Browse Available Bikes
-              </Link>
-              <Link
-                to="/contact"
-                className="btn btn-outline btn-lg text-white border-white hover:bg-white hover:text-blue-600"
-              >
-                Get More Info
-              </Link>
-            </div> */}
           </div>
         </div>
       </div>

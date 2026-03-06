@@ -1,15 +1,61 @@
-import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
 import Swal from "sweetalert2";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    subject: "",
-    message: "",
-  });
+  useGSAP(() => {
+    gsap.from("#contactHero", {
+      scrollTrigger: {
+        trigger: "#contactHero",
+        start: "top 80%",
+        end: "#contactInfo",
+      },
+      opacity: 0,
+      y: 100,
+      duration: 1,
+    });
+    gsap.from("#contactInfo", {
+      scrollTrigger: {
+        trigger: "#contactInfo",
+        start: "top 80%",
+        end: "#contactForm",
+      },
+      opacity: 0,
+      y: 100,
+      duration: 1,
+    });
+    gsap.from("#contactForm", {
+      scrollTrigger: {
+        trigger: "#contactForm",
+        start: "top 80%",
+        end: "#faq",
+      },
+      opacity: 0,
+      y: 100,
+      duration: 1,
+    });
+    gsap.from("#faq", {
+      scrollTrigger: {
+        trigger: "#faq",
+        start: "top 80%",
+        end: "top 60%",
+      },
+      opacity: 0,
+      y: 100,
+      duration: 1,
+    });
+  }, []);
+
+  // const [formData, setFormData] = useState({
+  //   name: "",
+  //   email: "",
+  //   phone: "",
+  //   subject: "",
+  //   message: "",
+  // });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,7 +92,10 @@ const Contact = () => {
   return (
     <div className="max-w-7xl mx-auto my-12">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
+      <section
+        id="contactHero"
+        className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20"
+      >
         <div className="container mx-auto px-4">
           <div className="max-w-3xl">
             <h1 className="text-5xl font-bold mb-4">Get In Touch</h1>
@@ -59,7 +108,7 @@ const Contact = () => {
       </section>
 
       {/* Contact Information Cards */}
-      <section className="py-16">
+      <section id="contactInfo" className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
             {/* Email Card */}
@@ -97,7 +146,7 @@ const Contact = () => {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-16">
+      <section id="contactForm" className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
             <h2 className="text-4xl font-bold mb-4 text-center">
@@ -191,7 +240,7 @@ const Contact = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16">
+      <section id="faq" className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-12 text-center">
             Frequently Asked Questions

@@ -1,5 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 const Services = () => {
   const [services, setServices] = useState([]);
@@ -10,24 +13,57 @@ const Services = () => {
       .then((res) => setServices(res.data));
   }, []);
 
+  useGSAP(() => {
+    gsap.from("#ourServices", {
+      scrollTrigger: {
+        trigger: "#ourServices",
+        start: "top 80%",
+        end: "#services",
+      },
+      opacity: 0,
+      y: 100,
+      duration: 1,
+    });
+    gsap.from("#services", {
+      scrollTrigger: {
+        trigger: "#services",
+        start: "top 80%",
+        end: "#serviceCard",
+      },
+      opacity: 0,
+      y: 100,
+      duration: 1,
+    });
+    gsap.from("#serviceCard", {
+      scrollTrigger: {
+        trigger: "#serviceCard",
+        start: "top 80%",
+        end: "top 60%",
+      },
+      opacity: 0,
+      y: 100,
+      duration: 1,
+    });
+  }, []);
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-16">
-      <div className="text-center mb-16">
+      <div id="ourServices" className="text-center mb-16">
         <h1 className="text-4xl font-bold text-blue-500">Our Services</h1>
         <p className="text-gray-500 mt-3">
           Professional care for your bikes and vehicles
         </p>
       </div>
 
-      <div className="space-y-20">
+      <div id="services" className="space-y-20">
         {services.map((service, index) => (
           <div
+            id="serviceCard"
             key={service.id}
             className={`flex flex-col md:flex-row items-center gap-12 ${
               index % 2 !== 0 ? "md:flex-row-reverse" : ""
             }`}
           >
-            {/* Image */}
             <div className="flex-1">
               <img
                 src={service.image}
@@ -36,7 +72,6 @@ const Services = () => {
               />
             </div>
 
-            {/* Content */}
             <div className="flex-1">
               <h2 className="text-3xl font-semibold mb-4">{service.title}</h2>
 

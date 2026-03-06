@@ -25,7 +25,6 @@ const VehicleDetails = () => {
       });
   }, [id]);
 
-
   const handleDelete = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -140,7 +139,7 @@ const VehicleDetails = () => {
             </div>
 
             <Link
-              to={`/vehicleBooking/${vehicle._id}`}
+              to={user ? `/vehicleBooking/${vehicle._id}` : "/login"}
               state={vehicle}
               disabled={!user}
               className={`w-full py-3 px-50 rounded-xl font-bold text-lg transition-all duration-300 ${

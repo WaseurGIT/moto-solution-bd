@@ -1,5 +1,9 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+gsap.registerPlugin(ScrollTrigger);
 
 const Technitians = () => {
   const [technicians, setTechnicians] = useState([]);
@@ -10,10 +14,33 @@ const Technitians = () => {
     });
   }, []);
 
+  useGSAP(() => {
+    gsap.from(".techTitle", {
+      scrollTrigger: {
+        trigger: ".techTitle",
+        start: "top 80%",
+        end: ".techCards",
+      },
+      opacity: 0,
+      y: 100,
+      duration: 1,
+    });
+    gsap.from(".techCards", {
+      scrollTrigger: {
+        trigger: ".techCards",
+        start: "top 80%",
+        end: "top 60%",
+      },
+      opacity: 0,
+      y: 100,
+      duration: 1,
+    });
+  }, []);
+
   return (
     <section className="py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
+        <div className="techTitle text-center mb-12">
           <h2 className="text-4xl font-bold mb-4 text-blue-500">
             Our Expert Technicians
           </h2>
@@ -26,7 +53,7 @@ const Technitians = () => {
           {technicians.map((tech) => (
             <div
               key={tech.id}
-              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
+              className="techCards bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
             >
               <div className="aspect-square overflow-hidden bg-gray-200">
                 <img
