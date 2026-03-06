@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
+import axiosSecure from "../../api/axiosSecure";
 
 const Register = () => {
   const { registerUser } = useAuth();
@@ -40,7 +41,7 @@ const Register = () => {
         uid: result.user.uid,
         phone: phone,
       };
-      await axios.post("http://localhost:5000/users", usereData);
+      await axiosSecure.post("/users", usereData);
       Swal.fire({
         toast: true,
         position: "top-end",

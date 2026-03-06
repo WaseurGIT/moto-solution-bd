@@ -1,7 +1,7 @@
-import axios from "axios";
 import { HiOutlineWrenchScrewdriver } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import axiosSecure from "../../api/axiosSecure";
 
 const AddTechnicianForm = () => {
   const navigate = useNavigate();
@@ -24,8 +24,8 @@ const AddTechnicianForm = () => {
       joiningDate,
     };
 
-    axios
-      .post("http://localhost:5000/technicians", technicianData)
+    axiosSecure
+      .post("/technicians", technicianData)
       .then((res) => {
         Swal.fire({
           title: "Technician Added 🎉",

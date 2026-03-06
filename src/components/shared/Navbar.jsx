@@ -14,7 +14,7 @@ const Navbar = () => {
   const links = [
     { path: "/", label: "Home" },
     { path: "/vehicles", label: "Vehicles" },
-    { path: "/addBooking", label: "Add Booking" },
+    { path: "/addBooking", label: "Service Booking" },
     { path: "/addTechnician", label: "Add Technician" },
   ];
 
@@ -43,7 +43,6 @@ const Navbar = () => {
   return (
     <div className="max-w-7xl mx-auto sticky top-2 rounded-full z-50 bg-white shadow">
       <div className="flex items-center justify-between px-4 py-2">
-        {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
           <FaMotorcycle className="text-4xl text-blue-500" />
           <h1 className="text-xl font-bold">Moto Solution BD</h1>
@@ -59,7 +58,6 @@ const Navbar = () => {
 
           {user ? (
             <>
-              {/* Avatar */}
               <img
                 src={
                   user.photoURL ||
@@ -69,7 +67,6 @@ const Navbar = () => {
                 className="w-8 h-8 rounded-full border"
               />
 
-              {/* Logout */}
               <button
                 onClick={handleLogout}
                 className="text-red-500 flex items-center gap-1"

@@ -1,15 +1,16 @@
-import axios from "axios";
+
 import { useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import axiosSecure from "../../api/axiosSecure";
 
 const Services = () => {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/services")
+    axiosSecure
+      .get("/services")
       .then((res) => setServices(res.data));
   }, []);
 

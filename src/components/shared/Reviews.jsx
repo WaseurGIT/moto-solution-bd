@@ -1,10 +1,10 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import axiosSecure from "../../api/axiosSecure";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,7 +12,7 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/reviews").then((res) => {
+    axiosSecure.get("/reviews").then((res) => {
       setReviews(res.data);
     });
   }, []);

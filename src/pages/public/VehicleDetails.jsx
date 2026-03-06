@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import axios from "axios";
 import Swal from "sweetalert2";
+import axiosSecure from "../../api/axiosSecure";
 
 const VehicleDetails = () => {
   const { id } = useParams();
@@ -12,8 +12,8 @@ const VehicleDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/vehicles")
+    axiosSecure
+      .get("/vehicles")
       .then((response) => {
         const foundVehicle = response.data.find((v) => v._id === id);
         setVehicle(foundVehicle);
@@ -36,8 +36,8 @@ const VehicleDetails = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios
-          .delete(`http://localhost:5000/vehicles/${vehicle._id}`)
+        axiosSecure
+          .delete(`/vehicles/${vehicle._id}`)
           .then(() => {
             Swal.fire(
               "Deleted!",

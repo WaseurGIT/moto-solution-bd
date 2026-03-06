@@ -1,9 +1,9 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import axiosSecure from "../../api/axiosSecure";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,8 +18,8 @@ const Vehicles = () => {
   const [vehicles, setVehicles] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/vehicles")
+    axiosSecure
+      .get("/vehicles")
       .then((response) => {
         setVehicles(response.data);
       })
@@ -29,7 +29,7 @@ const Vehicles = () => {
   }, []);
 
   const handleCategories = (category) => {
-    axios.get("http://localhost:5000/vehicles").then((res) => {
+    axiosSecure.get("/vehicles").then((res) => {
       const filterdVehicles =
         category === "All"
           ? res.data || res.data.data

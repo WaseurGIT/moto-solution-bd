@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Star } from "lucide-react";
-import axios from "axios";
 import Swal from "sweetalert2";
+import axiosSecure from "../../api/axiosSecure";
 
 const ReviewForm = () => {
   const [rating, setRating] = useState(0);
@@ -18,7 +18,7 @@ const ReviewForm = () => {
       rating,
     };
     try {
-      axios.post("http://localhost:5000/reviews", reviewData).then((res) => {
+      axiosSecure.post("/reviews", reviewData).then((res) => {
         Swal.fire({
           title: "Review Submitted 🎉",
           text: "Thank you for your valuable feedback!",

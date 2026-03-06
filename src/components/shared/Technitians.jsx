@@ -1,15 +1,15 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import axiosSecure from "../../api/axiosSecure";
 gsap.registerPlugin(ScrollTrigger);
 
 const Technitians = () => {
   const [technicians, setTechnicians] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/technicians").then((response) => {
+    axiosSecure.get("/technicians").then((response) => {
       setTechnicians(response.data);
     });
   }, []);

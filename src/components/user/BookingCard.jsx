@@ -1,8 +1,8 @@
 import { MdOutlineNoteAlt } from "react-icons/md";
 import useAuth from "../../hooks/useAuth";
-import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import axiosSecure from "../../api/axiosSecure";
 
 const BookingCard = () => {
   const { user } = useAuth();
@@ -31,8 +31,8 @@ const BookingCard = () => {
       email,
     };
 
-    const result = await axios.post(
-      "http://localhost:5000/bookings",
+    const result = await axiosSecure.post(
+      "/bookings",
       bookingData,
     );
     if (result.data.insertedId) {

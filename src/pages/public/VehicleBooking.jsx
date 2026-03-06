@@ -1,8 +1,7 @@
-// import React, { useEffect, useState } from "react";
-import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import axiosSecure from "../../api/axiosSecure";
 
 const VehicleBooking = () => {
   const { user } = useAuth();
@@ -35,8 +34,8 @@ const VehicleBooking = () => {
       vehicleName,
     };
 
-    await axios
-      .post("http://localhost:5000/vehicleBookings", vehicleBookingData)
+    await axiosSecure
+      .post("/vehicleBookings", vehicleBookingData)
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({

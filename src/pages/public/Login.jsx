@@ -1,8 +1,8 @@
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import axios from "axios";
 import Swal from "sweetalert2";
+import axiosSecure from "../../api/axiosSecure";
 
 const Login = () => {
   const { loginUser, googleLoginUser } = useAuth();
@@ -20,18 +20,25 @@ const Login = () => {
         email: result.user.email,
         uid: result.user.uid,
       };
-      await axios.post("http://localhost:5000/users", userData).then((res) => {
-        Swal.fire({
-          toast: true,
-          position: "top-end",
-          icon: "success",
-          title: `Welcome ${result.user.displayName}`,
-          showConfirmButton: false,
-          timer: 2000,
-        });
-        form.reset();
-        navigate("/");
+      await axiosSecure.post("/users", userData);
+      const tokenResponse = await axiosSecure.post("/jwt", {
+        email: result.user.email,
       });
+
+      localStorage.setItem("access-token", tokenResponse.data.token);
+
+      const userRes = await axiosSecure.get(`/users/${result.user.email}`);
+      localStorage.setItem("role", userRes.data.role);
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "success",
+        title: `Welcome ${result.user.displayName}`,
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      form.reset();
+      navigate("/");
     } catch (error) {
       Swal.fire({
         toast: true,
@@ -52,7 +59,14 @@ const Login = () => {
         email: res.user.email,
         uid: res.user.uid,
       };
-      await axios.post("http://localhost:5000/users", userData);
+      await axiosSecure.post("/users", userData);
+      const tokenResponse = await axiosSecure.post("/jwt", {
+        email: res.user.email,
+      });
+      localStorage.setItem("access-token", tokenResponse.data.token);
+      const userRes = await axiosSecure.get(`/users/${res.user.email}`);
+      localStorage.setItem("role", userRes.data.role);
+
       Swal.fire({
         toast: true,
         position: "top-end",
