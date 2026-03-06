@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Vehicles = () => {
   const categories = [
@@ -11,11 +11,10 @@ const Vehicles = () => {
     "Scooters",
   ];
   const [vehicles, setVehicles] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get("/vehicles.json")
+      .get("http://localhost:5000/vehicles")
       .then((response) => {
         setVehicles(response.data);
       })
@@ -25,7 +24,7 @@ const Vehicles = () => {
   }, []);
 
   const handleCategories = (category) => {
-    axios.get("/vehicles.json").then((res) => {
+    axios.get("http://localhost:5000/vehicles").then((res) => {
       const filterdVehicles =
         category === "All"
           ? res.data || res.data.data
@@ -60,24 +59,22 @@ const Vehicles = () => {
 
       <div className="grid grid-cols-3 gap-2">
         {vehicles.map((vehicle) => (
-          <div
-            onClick={() => navigate(`/vehicleDetails/${vehicle.id}`)}
-            key={vehicle.id}
-            className="border cursor-pointer border-gray-300 rounded-lg p-4 m-4"
-          >
-            <img
-              src={vehicle.image}
-              alt={vehicle.name}
-              className="w-full h-48 object-cover rounded-lg"
-            />
-            <h3 className="text-lg font-semibold mt-2">{vehicle.name}</h3>
-            <p className="text-gray-600">
-              {vehicle.company} - {vehicle.model}
-            </p>
-            <p className="text-xl font-bold text-green-500">
-              Tk {vehicle.price.toLocaleString()}
-            </p>
-          </div>
+          <Link to={`/vehicles/${vehicle._id}`} key={vehicle._id}>
+            <div className="border cursor-pointer border-gray-300 rounded-lg p-4 m-4">
+              <img
+                src={vehicle.image}
+                alt={vehicle.name}
+                className="w-full h-48 object-cover rounded-lg"
+              />
+              <h3 className="text-lg font-semibold mt-2">{vehicle.name}</h3>
+              <p className="text-gray-600">
+                {vehicle.company} - {vehicle.model}
+              </p>
+              <p className="text-xl font-bold text-green-500">
+                Tk {vehicle.price.toLocaleString()}
+              </p>
+            </div>
+          </Link>
         ))}
       </div>
     </div>

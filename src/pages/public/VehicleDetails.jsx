@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const VehicleDetails = () => {
   const { id } = useParams();
@@ -11,9 +12,10 @@ const VehicleDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("/vehicles.json")
+    axios
+      .get("http://localhost:5000/vehicles")
       .then((response) => {
-        const foundVehicle = response.data.find((v) => v.id === parseInt(id));
+        const foundVehicle = response.data.find((v) => v._id === id);
         setVehicle(foundVehicle);
         setLoading(false);
       })
@@ -30,6 +32,35 @@ const VehicleDetails = () => {
     }
     // Handle booking logic here
     console.log("Booking pressed for vehicle:", vehicle);
+  };
+
+  const handleDelete = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to recover this vehicle!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`http://localhost:5000/vehicles/${vehicle._id}`)
+          .then(() => {
+            Swal.fire(
+              "Deleted!",
+              "The vehicle has been deleted successfully.",
+              "success",
+            );
+            navigate("/vehicles");
+          })
+          .catch((error) => {
+            console.error("Error deleting vehicle:", error);
+            Swal.fire("Error!", "Failed to delete vehicle.", "error");
+          });
+      }
+    });
   };
 
   if (loading) {
@@ -238,6 +269,15 @@ const VehicleDetails = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="mt-8 flex justify-center">
+          <button
+            onClick={handleDelete}
+            className="cursor-pointer px-8 py-3 bg-red-500 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg"
+          >
+            Delete Vehicle
+          </button>
         </div>
       </div>
     </div>
