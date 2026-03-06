@@ -14,6 +14,7 @@ import AddTechnicianForm from "./components/admin/AddTechnicianForm.jsx";
 import AuthProvider from "./context/AuthProvider.jsx";
 import BookingCard from "./components/user/BookingCard.jsx";
 import Vehicles from "./pages/public/Vehicles.jsx";
+import VehicleDetails from "./pages/public/VehicleDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/vehicles",
         element: <Vehicles />,
+      },
+      {
+        path: "/vehicleDetails/:id",
+        element: <VehicleDetails />,
       },
       {
         path: "/login",

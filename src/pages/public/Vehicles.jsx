@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Vehicles = () => {
   const categories = [
@@ -10,6 +11,7 @@ const Vehicles = () => {
     "Scooters",
   ];
   const [vehicles, setVehicles] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -59,8 +61,9 @@ const Vehicles = () => {
       <div className="grid grid-cols-3 gap-2">
         {vehicles.map((vehicle) => (
           <div
+            onClick={() => navigate(`/vehicleDetails/${vehicle.id}`)}
             key={vehicle.id}
-            className="border border-gray-300 rounded-lg p-4 m-4"
+            className="border cursor-pointer border-gray-300 rounded-lg p-4 m-4"
           >
             <img
               src={vehicle.image}
