@@ -13,6 +13,7 @@ import ReviewForm from "./components/user/ReviewForm.jsx";
 import AddTechnicianForm from "./components/admin/AddTechnicianForm.jsx";
 import AuthProvider from "./context/AuthProvider.jsx";
 import BookingCard from "./components/user/BookingCard.jsx";
+import Vehicles from "./pages/public/Vehicles.jsx";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/vehicles",
+        element: <Vehicles />,
       },
       {
         path: "/login",
