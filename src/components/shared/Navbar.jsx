@@ -46,10 +46,10 @@ const Navbar = () => {
     <div className="max-w-7xl mx-auto sticky top-2 rounded-full z-50 bg-white shadow">
       <div className="flex items-center justify-between px-4 py-2">
         {/* Logo */}
-        <div className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <FaMotorcycle className="text-4xl text-blue-500" />
           <h1 className="text-xl font-bold">Moto Solution BD</h1>
-        </div>
+        </Link>
 
         {/* Desktop Links */}
         <div className="hidden md:flex space-x-4 items-center">
