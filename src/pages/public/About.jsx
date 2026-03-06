@@ -128,51 +128,26 @@ const About = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="bg-blue-600 text-white py-16">
+      <section className=" py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-5xl font-bold mb-2">500+</div>
+              <div className="text-3xl font-bold mb-2">500+</div>
               <p className="text-xl">Active Customers</p>
             </div>
             <div>
-              <div className="text-5xl font-bold mb-2">1000+</div>
+              <div className="text-3xl font-bold mb-2">1000+</div>
               <p className="text-xl">Bookings Completed</p>
             </div>
             <div>
-              <div className="text-5xl font-bold mb-2">150+</div>
+              <div className="text-3xl font-bold mb-2">150+</div>
               <p className="text-xl">Motorcycles</p>
             </div>
             <div>
-              <div className="text-5xl font-bold mb-2">10+</div>
+              <div className="text-3xl font-bold mb-2">10+</div>
               <p className="text-xl">Locations</p>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center">Our Team</h2>
-          <p className="text-center text-gray-600 max-w-2xl mx-auto mb-8">
-            We are a dedicated team of professionals committed to providing
-            exceptional service and ensuring every customer has an amazing
-            experience with Moto Solution.
-          </p>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-4">Ready to Ride?</h2>
-          <p className="text-xl mb-8">
-            Book your motorcycle today and experience the difference
-          </p>
-          <a href="/services" className="btn btn-primary btn-lg">
-            View Our Services
-          </a>
         </div>
       </section>
     </div>

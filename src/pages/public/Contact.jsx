@@ -40,7 +40,7 @@ const Contact = () => {
             text: "Something went wrong.",
           });
         },
-      )
+      );
   };
 
   return (
@@ -273,17 +273,6 @@ const Contact = () => {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-4">Still have questions?</h2>
-          <p className="text-xl mb-8">
-            Call us at +880 1700-000000 or visit one of our locations across
-            Bangladesh
-          </p>
         </div>
       </section>
     </div>
