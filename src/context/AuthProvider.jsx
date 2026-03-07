@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import React, { createContext, useEffect, useState } from "react";
 import { auth } from "../../firebase.config";
+import axiosSecure from "../api/axiosSecure";
 
 export const AuthContext = createContext();
 const googleProvider = new GoogleAuthProvider();
@@ -40,9 +41,13 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       try {
         setUser(currentUser);
+        if (currentUser) {
+          const res = await axiosSecure.get(`/users/${currentUser.email}`);
+          setRole(res.data.role);
+        }
       } catch (error) {
         setUser(null);
         console.log("error setting user", error);

@@ -16,6 +16,7 @@ import BookingCard from "./components/user/BookingCard.jsx";
 import Vehicles from "./pages/public/Vehicles.jsx";
 import VehicleDetails from "./pages/public/VehicleDetails.jsx";
 import VehicleBooking from "./pages/public/VehicleBooking.jsx";
+import Accessories from "./pages/public/Accessories.jsx";
 
 const router = createBrowserRouter([
   {
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
         element: <VehicleDetails />,
       },
       {
-        path: '/vehicleBooking/:id',
+        path: "/vehicleBooking/:id",
         element: <VehicleBooking />,
       },
       {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/accessories",
+        element: <Accessories />,
       },
       {
         path: "/reviewForm",
