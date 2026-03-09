@@ -5,6 +5,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
   useGSAP(() => {
+    // form, to, fromto
     gsap.from("#bannerHero", {
       scrollTrigger: {
         trigger: "#bannerHero",

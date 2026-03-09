@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
@@ -20,15 +21,19 @@ const Login = () => {
         email: result.user.email,
         uid: result.user.uid,
       };
-      await axiosSecure.post("/users", userData);
+      
+
       const tokenResponse = await axiosSecure.post("/jwt", {
         email: result.user.email,
       });
 
       localStorage.setItem("access-token", tokenResponse.data.token);
 
-      const userRes = await axiosSecure.get(`/users/${result.user.email}`);
-      localStorage.setItem("role", userRes.data.role);
+      const userRes = await axiosSecure.get(`/usersRole/${email}`);
+
+      // localStorage.setItem("role", userRes.data.role);
+
+      // console.log(userRes.data.role);
       Swal.fire({
         toast: true,
         position: "top-end",
@@ -38,7 +43,18 @@ const Login = () => {
         timer: 2000,
       });
       form.reset();
-      navigate("/");
+
+      if (userRes.data.role === "admin") {
+        navigate("/adminDashboard");
+      } else {  
+        navigate("/userDashboard");
+      }
+
+      // console.log(result);
+      // // navigate("/");
+      // console.log(result);
+
+    // eslint-disable-next-line no-unused-vars
     } catch (error) {
       Swal.fire({
         toast: true,
@@ -58,14 +74,15 @@ const Login = () => {
         name: res.user.displayName,
         email: res.user.email,
         uid: res.user.uid,
+        role:'user',
       };
       await axiosSecure.post("/users", userData);
       const tokenResponse = await axiosSecure.post("/jwt", {
         email: res.user.email,
       });
       localStorage.setItem("access-token", tokenResponse.data.token);
-      const userRes = await axiosSecure.get(`/users/${res.user.email}`);
-      localStorage.setItem("role", userRes.data.role);
+      const userRes = await axiosSecure.get(`/usersRole/${res.user.email}`);
+      // localStorage.setItem("role", userRes.data.role);
 
       Swal.fire({
         toast: true,
@@ -75,7 +92,12 @@ const Login = () => {
         showConfirmButton: false,
         timer: 2000,
       });
-      navigate("/");
+
+      if (userRes.data.role === "admin") {
+        navigate("/adminDashboard");
+      } else {
+        navigate("/userDashboard");
+      }
     } catch (error) {
       Swal.fire({
         toast: true,

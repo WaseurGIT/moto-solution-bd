@@ -17,6 +17,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [role, setRole] = useState(null);
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const registerUser = async (email, password, name) => {
     const result = await createUserWithEmailAndPassword(auth, email, password);
@@ -44,8 +45,9 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       try {
         setUser(currentUser);
+        setLoading(false);
         if (currentUser) {
-          const res = await axiosSecure.get(`/users/${currentUser.email}`);
+          const res = await axiosSecure.get(`/usersRole/${currentUser.email}`);
           setRole(res.data.role);
         }
       } catch (error) {
@@ -59,6 +61,7 @@ const AuthProvider = ({ children }) => {
 
   const authInfo = {
     role,
+    loading,
     user,
     registerUser,
     loginUser,

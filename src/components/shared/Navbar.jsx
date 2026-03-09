@@ -7,7 +7,7 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 
 const Navbar = () => {
-  const { user, logOutUser } = useAuth();
+  const { user, logOutUser, role } = useAuth();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -17,6 +17,14 @@ const Navbar = () => {
     { path: "/accessories", label: "Accessories" },
     { path: "/addBooking", label: "Service Booking" },
     { path: "/addTechnician", label: "Add Technician" },
+    ...(user
+      ? [
+          {
+            path: role === "admin" ? "/adminDashboard" : "/userDashboard",
+            label: "Dashboard",
+          },
+        ]
+      : []),
   ];
 
   const handleLogout = async () => {

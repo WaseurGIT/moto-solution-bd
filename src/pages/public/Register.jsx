@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import axios from "axios";
 import Swal from "sweetalert2";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import axiosSecure from "../../api/axiosSecure";
@@ -40,8 +39,16 @@ const Register = () => {
         email: result.user.email,
         uid: result.user.uid,
         phone: phone,
+        role: "user",
       };
       await axiosSecure.post("/users", usereData);
+      const tokenResponse = await axiosSecure.post("/jwt", {
+        email: result.user.email,
+      });
+
+      localStorage.setItem("access-token", tokenResponse.data.token);
+
+      navigate("/userDashboard");
       Swal.fire({
         toast: true,
         position: "top-end",
@@ -51,7 +58,7 @@ const Register = () => {
         timer: 2000,
       });
       form.reset();
-      navigate("/");
+      navigate("/userDashboard");
     } catch (error) {
       Swal.fire({
         icon: "error",

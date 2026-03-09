@@ -17,6 +17,10 @@ import Vehicles from "./pages/public/Vehicles.jsx";
 import VehicleDetails from "./pages/public/VehicleDetails.jsx";
 import VehicleBooking from "./pages/public/VehicleBooking.jsx";
 import Accessories from "./pages/public/Accessories.jsx";
+import UserDashboard from "./pages/userDashboard/UserDashboard.jsx";
+import AdminDashboard from "./pages/adminDashboard/AdminDashboard.jsx";
+import PrivateRoute from "./routes/PrivateRoute.jsx";
+import AdminRoute from "./routes/AdminRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -71,6 +75,30 @@ const router = createBrowserRouter([
       {
         path: "/addBooking",
         element: <BookingCard />,
+      },
+      // {
+      //   path: "/userDashboard",
+      //   element: <UserDashboard />,
+      // },
+      // {
+      //   path: "/adminDashboard",
+      //   element: <AdminDashboard />,
+      // },
+      {
+        path: "/userDashboard",
+        element: (
+          <PrivateRoute>
+            <UserDashboard />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/adminDashboard",
+        element: (
+          <AdminRoute>
+            <AdminDashboard />
+          </AdminRoute>
+        ),
       },
     ],
   },
