@@ -21,6 +21,7 @@ import UserDashboard from "./pages/userDashboard/UserDashboard.jsx";
 import AdminDashboard from "./pages/adminDashboard/AdminDashboard.jsx";
 import PrivateRoute from "./routes/PrivateRoute.jsx";
 import AdminRoute from "./routes/AdminRoute.jsx";
+import DashboardLayout from "./routes/DashboardLayout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -76,16 +77,14 @@ const router = createBrowserRouter([
         path: "/addBooking",
         element: <BookingCard />,
       },
-      // {
-      //   path: "/userDashboard",
-      //   element: <UserDashboard />,
-      // },
-      // {
-      //   path: "/adminDashboard",
-      //   element: <AdminDashboard />,
-      // },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
       {
-        path: "/userDashboard",
+        path: "user",
         element: (
           <PrivateRoute>
             <UserDashboard />
@@ -93,7 +92,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/adminDashboard",
+        path: "admin",
         element: (
           <AdminRoute>
             <AdminDashboard />

@@ -18,10 +18,9 @@ function UserDashboard() {
   return (
     <div>
       <h1>User Dashboard</h1>
-      <p>Welcome, {userInfo?.name}</p>
-      <p>Email: {userInfo?.email}</p>
-      <p>Phone: {userInfo?.phone}</p>
-      <p>Role: {userInfo?.role}</p>
+      <p className="text-2xl font-bold text-fuchsia-500">Welcome, {userInfo?.name}</p>
+      <p className="text-lg ">{userInfo?.email}</p>
+      <p className="text-lg">{userInfo?.phone}</p>
     </div>
   );
 }

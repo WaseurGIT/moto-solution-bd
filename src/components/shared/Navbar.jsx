@@ -20,7 +20,7 @@ const Navbar = () => {
     ...(user
       ? [
           {
-            path: role === "admin" ? "/adminDashboard" : "/userDashboard",
+            path: role === "admin" ? "/dashboard/admin" : "/dashboard/user",
             label: "Dashboard",
           },
         ]
