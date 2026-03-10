@@ -147,29 +147,17 @@ const router = createBrowserRouter([
         element: <ServiceBookingTable />,
       },
       {
-        path:'manageAllServices',
-        element: <ManageServices/>
+        path: "manageAllServices",
+        element: <ManageServices />,
       },
       {
-        path: 'addAccessories',
-        element: <AddAccesories/>
+        path: "addAccessories",
+        element: <AddAccesories />,
       },
       {
-        path: 'manageAllAccessories',
-        element: <ManageAllAccessories/>
-      }
-      // {
-      //   path: "services",
-      //   element: <ManageServices />,
-      // },
-      // {
-      //   path: "bookings",
-      //   element: <ManageBookings />,
-      // },
-      // {
-      //   path: "vehicles",
-      //   element: <VehicleBookings />,
-      // },
+        path: "manageAllAccessories",
+        element: <ManageAllAccessories />,
+      },
     ],
   },
 ]);

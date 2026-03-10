@@ -213,9 +213,15 @@ const Contact = () => {
                 ></textarea>
               </div>
 
-              <button type="submit" className="btn btn-primary w-full">
-                Send Message
-              </button>
+              {user ? (
+                <button type="submit" className="btn btn-primary w-full">
+                  Send Message
+                </button>
+              ) : (
+                <p className="text-center text-gray-600">
+                  Please log in to send us a message.
+                </p>
+              )}
             </form>
           </div>
         </div>
