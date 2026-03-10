@@ -3,6 +3,8 @@ import useAuth from "../../hooks/useAuth";
 import axiosSecure from "../../api/axiosSecure";
 import ServicePieStats from "../../components/admin/ServicePieStats";
 import VehiclePieStats from "../../components/admin/VehiclePieStats";
+import TechnicianRolePieStats from "../../components/admin/TechnicianRolePieStats";
+import AccessoriesPieStats from "../../components/admin/AccessoriesPieStats";
 
 const AdminProfile = () => {
   const { user } = useAuth();
@@ -27,91 +29,104 @@ const AdminProfile = () => {
   if (loading) {
     return (
       <div className="h-screen flex items-center justify-center">
-        <div className="text-gray-500">Loading...</div>
+        <div className="text-gray-500 text-lg">Loading Dashboard...</div>
       </div>
     );
   }
 
   return (
-    <div className="h-screen bg-white p-4">
-      <div className="max-w-2xl mx-auto">
-        <div className="mb-12">
-          <h1 className="text-4xl font-light text-gray-900 tracking-tight">
-            Admin Profile
-          </h1>
-          <div className="w-12 h-1 bg-gray-900 mt-4"></div>
-        </div>
+    <div className="min-h-screen bg-gray-100 p-8">
+      <div className="mb-12">
+        <h1 className="text-4xl font-bold text-gray-800">Admin Dashboard</h1>
+        <p className="text-gray-500 mt-2">
+          Monitor your platform activity and analytics
+        </p>
+      </div>
 
-        <div className="border border-gray-200 rounded-lg p-12 mb-8">
-          <div className="flex flex-col items-center mb-8">
-            <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-              {user?.photoURL ? (
-                <img
-                  src={user.photoURL}
-                  alt="Admin"
-                  className="w-20 h-20 rounded-full object-cover"
-                />
-              ) : (
-                <span className="text-4xl text-gray-400">👤</span>
-              )}
-            </div>
+      <div className="bg-white shadow-lg rounded-2xl p-8 mb-12 flex items-center gap-8 max-w-4xl">
+        {user?.photoURL ? (
+          <img
+            src={user.photoURL}
+            alt="Admin"
+            className="w-24 h-24 rounded-full object-cover border"
+          />
+        ) : (
+          <div className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center text-4xl">
+            👤
           </div>
+        )}
 
-          <div className="space-y-6">
-            <div className="border-b border-gray-100 pb-4">
-              <p className="text-xs uppercase tracking-widest text-gray-500 mb-2">
-                Full Name
-              </p>
-              <p className="text-lg text-gray-900">
-                {adminInfo?.name || user?.displayName || "Not Available"}
-              </p>
-            </div>
+        <div className="flex-1">
+          <h2 className="text-2xl font-semibold text-gray-800">
+            {adminInfo?.name || user?.displayName}
+          </h2>
 
-            <div className="border-b border-gray-100 pb-4">
-              <p className="text-xs uppercase tracking-widest text-gray-500 mb-2">
-                Email
-              </p>
-              <p className="text-lg text-gray-900">{user?.email}</p>
-            </div>
+          <p className="text-gray-500 mt-1">{user?.email}</p>
 
-            <div className="border-b border-gray-100 pb-4">
-              <p className="text-xs uppercase tracking-widest text-gray-500 mb-2">
-                Role
-              </p>
-              <p className="text-lg text-gray-900 capitalize">
-                {adminInfo?.role || "Admin"}
-              </p>
-            </div>
+          <div className="mt-3 flex gap-3 flex-wrap">
+            <span className="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded-full">
+              {adminInfo?.role || "Admin"}
+            </span>
 
             {adminInfo?.phone && (
-              <div className="border-b border-gray-100 pb-4">
-                <p className="text-xs uppercase tracking-widest text-gray-500 mb-2">
-                  Phone
-                </p>
-                <p className="text-lg text-gray-900">{adminInfo.phone}</p>
-              </div>
+              <span className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-full">
+                📞 {adminInfo.phone}
+              </span>
             )}
 
             {adminInfo?.address && (
-              <div className="border-b border-gray-100 pb-4">
-                <p className="text-xs uppercase tracking-widest text-gray-500 mb-2">
-                  Address
-                </p>
-                <p className="text-lg text-gray-900">{adminInfo.address}</p>
-              </div>
+              <span className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-full">
+                📍 {adminInfo.address}
+              </span>
             )}
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-xl font-bold text-gray-900">Service Stats</h1>
-          <ServicePieStats />
+
+      {/* ANALYTICS TITLE */}
+      <div className="mb-6">
+        <h2 className="text-2xl font-semibold text-gray-800">
+          Analytics Overview
+        </h2>
+      </div>
+
+      <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+   
+        <div className="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+          <h3 className="text-lg font-semibold text-gray-700 mb-6 text-center">
+            Service Usage
+          </h3>
+          <div className="flex justify-center">
+            <ServicePieStats />
           </div>
-          <div>
-            <h1 className="text-xl font-bold text-gray-900">Vehicle Stats</h1>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+          <h3 className="text-lg font-semibold text-gray-700 mb-6 text-center">
+            Vehicle Bookings
+          </h3>
+          <div className="flex justify-center">
             <VehiclePieStats />
           </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+          <h3 className="text-lg font-semibold text-gray-700 mb-6 text-center">
+            Technician Role Distribution
+          </h3>
+          <div className="flex justify-center">
+            <TechnicianRolePieStats />
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+          <h3 className="text-lg font-semibold text-gray-700 mb-6 text-center">
+            Accessorie Category Stats
+          </h3>
+          <div className="flex justify-center">
+            <AccessoriesPieStats />
+          </div>
+        </div>
       </div>
     </div>
   );
