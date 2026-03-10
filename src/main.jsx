@@ -29,6 +29,7 @@ import AllTechnicians from "./components/admin/AllTechnicians.jsx";
 import VehicleBookingsTable from "./pages/adminDashboard/VehicleBookingsTable.jsx";
 import ServiceBookingTable from "./components/admin/ServiceBookingTable.jsx";
 import ManageServices from "./pages/adminDashboard/ManageServices.jsx";
+import ManageAllAccessories from "./pages/adminDashboard/manageAllAccessories.jsx";
 
 const router = createBrowserRouter([
   {
@@ -143,6 +144,10 @@ const router = createBrowserRouter([
       {
         path:'manageAllServices',
         element: <ManageServices/>
+      },
+      {
+        path: 'manageAllAccessories',
+        element: <ManageAllAccessories/>
       }
       // {
       //   path: "services",
