@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axiosSecure from "../../api/axiosSecure";
 
-const Profile = () => {
+const UserProfile = () => {
   const { user, role, loading } = useAuth();
 
   const [userInfo, setUserInfo] = useState(null);
@@ -111,4 +111,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default UserProfile;

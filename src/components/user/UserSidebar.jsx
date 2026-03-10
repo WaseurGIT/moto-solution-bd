@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axiosSecure from "../../api/axiosSecure";
-import { Link, Route, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { IoMdLogOut } from "react-icons/io";
 import { MdNoteAlt } from "react-icons/md";
 import { FaCarSide, FaUser } from "react-icons/fa";
 import Swal from "sweetalert2";
-import MyBookings from "../../pages/userDashboard/MyBookings";
-import MyVehiclesBookings from "../../pages/userDashboard/MyVehiclesBookings";
-import Profile from "../../pages/userDashboard/Profile";
 
 const UserSidebar = () => {
   const { user, logOutUser } = useAuth();
   const [userInfo, setUserInfo] = useState(null);
-  const [activeTab, setActiveTab] = useState("dashboard");
   const navigate = useNavigate();
   useEffect(() => {
     if (user?.email) {
@@ -67,7 +63,7 @@ const UserSidebar = () => {
           <div className="flex items-center gap-2">
             <FaUser className="text-xl text-blue-500" />
             <Link
-              to="/dashboard/user"
+              to="/dashboard/user/profile"
               className="text-lg text-blue-500 font-semibold"
             >
               Profile
@@ -82,7 +78,7 @@ const UserSidebar = () => {
           <div className="flex items-center gap-2">
             <MdNoteAlt className="text-xl text-blue-500" />
             <Link
-              to="/addBooking"
+              to="/serviceBookings"
               className="text-lg text-blue-500 font-semibold"
             >
               Service Bookings
@@ -90,17 +86,17 @@ const UserSidebar = () => {
           </div>
           <div className="flex items-center gap-2">
             <MdNoteAlt className="text-xl text-blue-500" />
-            <button
-              onClick={() => setActiveTab("myServiceBookings")}
+            <Link
+              to="/dashboard/user/myServiceBookings"
               className="cursor-pointer text-lg text-blue-500 font-semibold text-left hover:text-blue-700 transition"
             >
               My Service Bookings
-            </button>
+            </Link>
           </div>
           <div className="flex items-center gap-2">
             <FaCarSide className="text-xl text-blue-500" />
             <Link
-              to='/vehicles'
+              to="/vehicles"
               className="cursor-pointer text-lg text-blue-500 font-semibold text-left hover:text-blue-700 transition"
             >
               Book a Vehicle
@@ -108,12 +104,12 @@ const UserSidebar = () => {
           </div>
           <div className="flex items-center gap-2">
             <FaCarSide className="text-xl text-blue-500" />
-            <button
-              onClick={() => setActiveTab("myVehicleBookings")}
+            <Link
+              to="/dashboard/user/myVehicleBookings"
               className="cursor-pointer text-lg text-blue-500 font-semibold text-left hover:text-blue-700 transition"
             >
               My Vehicle Bookings
-            </button>
+            </Link>
           </div>
           <div className="flex items-center gap-2">
             <IoMdLogOut className="text-xl text-red-500" />
@@ -126,13 +122,6 @@ const UserSidebar = () => {
           </div>
         </div>
       </aside>
-
-      {/* Main Content */}
-      <main className="flex-1 overflow-y-auto">
-        {activeTab === "dashboard" && <Profile />}
-        {activeTab === "myServiceBookings" && <MyBookings />}
-        {activeTab === "myVehicleBookings" && <MyVehiclesBookings />}
-      </main>
     </div>
   );
 };

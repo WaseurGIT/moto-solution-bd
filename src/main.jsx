@@ -20,6 +20,15 @@ import Accessories from "./pages/public/Accessories.jsx";
 import UserDashboard from "./pages/userDashboard/UserDashboard.jsx";
 import AdminDashboard from "./pages/adminDashboard/AdminDashboard.jsx";
 import PrivateRoute from "./routes/PrivateRoute.jsx";
+import AdminProfile from "./pages/adminDashboard/AdminProfile.jsx";
+import UserTable from "./components/admin/UserTable.jsx";
+import MyVehiclesBookings from "./pages/userDashboard/MyVehiclesBookings.jsx";
+import UserProfile from "./pages/userDashboard/UserProfile.jsx";
+import MyBookings from "./pages/userDashboard/MyBookings.jsx";
+import AllTechnicians from "./components/admin/AllTechnicians.jsx";
+import VehicleBookingsTable from "./pages/adminDashboard/VehicleBookingsTable.jsx";
+import ServiceBookingTable from "./components/admin/ServiceBookingTable.jsx";
+import ManageServices from "./pages/adminDashboard/ManageServices.jsx";
 
 const router = createBrowserRouter([
   {
@@ -84,6 +93,20 @@ const router = createBrowserRouter([
         <UserDashboard />
       </PrivateRoute>
     ),
+    children: [
+      {
+        path: "profile",
+        element: <UserProfile />,
+      },
+      {
+        path: "myServiceBookings",
+        element: <MyBookings />,
+      },
+      {
+        path: "myVehicleBookings",
+        element: <MyVehiclesBookings />,
+      },
+    ],
   },
   {
     path: "/dashboard/admin",
@@ -92,6 +115,48 @@ const router = createBrowserRouter([
         <AdminDashboard />
       </PrivateRoute>
     ),
+    children: [
+      {
+        index: true,
+        element: <AdminProfile />,
+      },
+      {
+        path: "profile",
+        element: <AdminProfile />,
+      },
+      {
+        path: "users",
+        element: <UserTable />,
+      },
+      {
+        path: "technicians",
+        element: <AllTechnicians />,
+      },
+      {
+        path: "vehicles",
+        element: <VehicleBookingsTable />,
+      },
+      {
+        path: "serviceBookings",
+        element: <ServiceBookingTable />,
+      },
+      {
+        path:'manageAllServices',
+        element: <ManageServices/>
+      }
+      // {
+      //   path: "services",
+      //   element: <ManageServices />,
+      // },
+      // {
+      //   path: "bookings",
+      //   element: <ManageBookings />,
+      // },
+      // {
+      //   path: "vehicles",
+      //   element: <VehicleBookings />,
+      // },
+    ],
   },
 ]);
 
