@@ -44,6 +44,7 @@ const ServiceBookingTable = () => {
               <th className="p-3 border">Vehicle</th>
               <th className="p-3 border">Model</th>
               <th className="p-3 border">Category</th>
+              <th className="p-3 border">Price</th>
               <th className="p-3 border">Address</th>
               <th className="p-3 border">Date</th>
               <th className="p-3 border">Action</th>
@@ -60,6 +61,7 @@ const ServiceBookingTable = () => {
                 <td className="border p-2">{booking.vehicleType}</td>
                 <td className="border p-2">{booking.model}</td>
                 <td className="border p-2">{booking.category}</td>
+                <td className="border p-2">{booking.price}</td>
                 <td className="border p-2">{booking.address}</td>
                 <td className="border p-2">{booking.date}</td>
 

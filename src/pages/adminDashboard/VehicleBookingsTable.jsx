@@ -105,7 +105,7 @@ const VehicleBookingsTable = () => {
                     : "N/A"}
                 </td>
                 <td className="border border-gray-300 p-3">
-                  ${booking.totalPrice || "0"}
+                  ${booking.price || "0"}
                 </td>
                 <td className="border border-gray-300 p-3 text-center">
                   <button

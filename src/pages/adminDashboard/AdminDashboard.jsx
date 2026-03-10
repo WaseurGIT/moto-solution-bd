@@ -1,5 +1,6 @@
 import AdminSidebar from "../../components/admin/AdminSidebar";
 import { Outlet } from "react-router-dom";
+import VehicleStats from "../../components/admin/ServicePieStats";
 
 const AdminDashboard = () => {
   return (
@@ -10,6 +11,7 @@ const AdminDashboard = () => {
       <div className="flex-1 p-6">
         <Outlet />
       </div>
+
 
     </div>
   );

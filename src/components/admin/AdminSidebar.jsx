@@ -10,6 +10,8 @@ import Swal from "sweetalert2";
 import { CiUser } from "react-icons/ci";
 import AdminProfile from "../../pages/adminDashboard/AdminProfile";
 import UserTable from "./UserTable";
+import { FaScrewdriverWrench } from "react-icons/fa6";
+import { GiFullMotorcycleHelmet } from "react-icons/gi";
 
 const AdminSidebar = () => {
   const { user, logOutUser } = useAuth();
@@ -125,7 +127,7 @@ const AdminSidebar = () => {
           </div>
           
           <div className="flex items-center gap-2">
-            <FaCar className="text-xl text-blue-500" />
+            <FaScrewdriverWrench className="text-xl text-blue-500" />
             <Link
               to="/dashboard/admin/technicians"
               className="cursor-pointer text-lg text-blue-500 font-semibold text-left hover:text-blue-700 transition"
@@ -135,7 +137,7 @@ const AdminSidebar = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <FaCar className="text-xl text-blue-500" />
+            <FaScrewdriverWrench className="text-xl text-blue-500" />
             <Link
               to="/addTechnician"
               className="cursor-pointer text-lg text-blue-500 font-semibold text-left hover:text-blue-700 transition"
@@ -145,7 +147,7 @@ const AdminSidebar = () => {
           </div>
           
           <div className="flex items-center gap-2">
-            <FaCar className="text-xl text-blue-500" />
+            <GiFullMotorcycleHelmet className="text-xl text-blue-500" />
             <Link
               to="/dashboard/admin/addAccessories"
               className="cursor-pointer text-lg text-blue-500 font-semibold text-left hover:text-blue-700 transition"
@@ -155,7 +157,7 @@ const AdminSidebar = () => {
           </div>
           
           <div className="flex items-center gap-2">
-            <FaCar className="text-xl text-blue-500" />
+            <GiFullMotorcycleHelmet className="text-xl text-blue-500" />
             <Link
               to="/dashboard/admin/manageAllAccessories"
               className="cursor-pointer text-lg text-blue-500 font-semibold text-left hover:text-blue-700 transition"

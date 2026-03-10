@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axiosSecure from "../../api/axiosSecure";
+import ServicePieStats from "../../components/admin/ServicePieStats";
+import VehiclePieStats from "../../components/admin/VehiclePieStats";
 
 const AdminProfile = () => {
   const { user } = useAuth();
@@ -100,6 +102,16 @@ const AdminProfile = () => {
             )}
           </div>
         </div>
+      </div>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-xl font-bold text-gray-900">Service Stats</h1>
+          <ServicePieStats />
+          </div>
+          <div>
+            <h1 className="text-xl font-bold text-gray-900">Vehicle Stats</h1>
+            <VehiclePieStats />
+          </div>
       </div>
     </div>
   );
