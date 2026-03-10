@@ -78,7 +78,7 @@ const UserSidebar = () => {
           <div className="flex items-center gap-2">
             <MdNoteAlt className="text-xl text-blue-500" />
             <Link
-              to="/serviceBookings"
+              to="/addBooking"
               className="text-lg text-blue-500 font-semibold"
             >
               Service Bookings
