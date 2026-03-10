@@ -48,7 +48,7 @@ const Register = () => {
 
       localStorage.setItem("access-token", tokenResponse.data.token);
 
-      navigate("/userDashboard");
+      navigate("/dashboard/user");
       Swal.fire({
         toast: true,
         position: "top-end",
@@ -58,7 +58,7 @@ const Register = () => {
         timer: 2000,
       });
       form.reset();
-      navigate("/userDashboard");
+      navigate("/dashboard/user");
     } catch (error) {
       Swal.fire({
         icon: "error",

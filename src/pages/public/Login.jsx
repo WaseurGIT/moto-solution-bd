@@ -30,10 +30,6 @@ const Login = () => {
       localStorage.setItem("access-token", tokenResponse.data.token);
 
       const userRes = await axiosSecure.get(`/usersRole/${email}`);
-
-      // localStorage.setItem("role", userRes.data.role);
-
-      // console.log(userRes.data.role);
       Swal.fire({
         toast: true,
         position: "top-end",
@@ -45,9 +41,9 @@ const Login = () => {
       form.reset();
 
       if (userRes.data.role === "admin") {
-        navigate("/adminDashboard");
+        navigate("/dashboard/admin");
       } else {  
-        navigate("/userDashboard");
+        navigate("/dashboard/user");
       }
 
       // console.log(result);
@@ -94,9 +90,9 @@ const Login = () => {
       });
 
       if (userRes.data.role === "admin") {
-        navigate("/adminDashboard");
+        navigate("/dashboard/admin");
       } else {
-        navigate("/userDashboard");
+        navigate("/dashboard/user");
       }
     } catch (error) {
       Swal.fire({

@@ -20,8 +20,6 @@ import Accessories from "./pages/public/Accessories.jsx";
 import UserDashboard from "./pages/userDashboard/UserDashboard.jsx";
 import AdminDashboard from "./pages/adminDashboard/AdminDashboard.jsx";
 import PrivateRoute from "./routes/PrivateRoute.jsx";
-import AdminRoute from "./routes/AdminRoute.jsx";
-import DashboardLayout from "./routes/DashboardLayout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -80,26 +78,20 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/dashboard",
-    element: <DashboardLayout />,
-    children: [
-      {
-        path: "user",
-        element: (
-          <PrivateRoute>
-            <UserDashboard />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "admin",
-        element: (
-          <AdminRoute>
-            <AdminDashboard />
-          </AdminRoute>
-        ),
-      },
-    ],
+    path: "/dashboard/user",
+    element: (
+      <PrivateRoute role="user">
+        <UserDashboard />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/dashboard/admin",
+    element: (
+      <PrivateRoute role="admin">
+        <AdminDashboard />
+      </PrivateRoute>
+    ),
   },
 ]);
 

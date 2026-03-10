@@ -16,11 +16,20 @@ function UserDashboard() {
   }, [user]);
 
   return (
-    <div>
-      <h1>User Dashboard</h1>
-      <p className="text-2xl font-bold text-fuchsia-500">Welcome, {userInfo?.name}</p>
-      <p className="text-lg ">{userInfo?.email}</p>
-      <p className="text-lg">{userInfo?.phone}</p>
+    <div className="user-dashboard">
+      <aside className="w-64 bg-blue-100 p-4">
+        <h3>User Menu</h3>
+        <ul>
+          <li>Dashboard</li>
+          <li>My Bookings</li>
+          <li>Reviews</li>
+        </ul>
+      </aside>
+      <main className="p-6 flex-1">
+        <h1 className="text-3xl font-bold">Welcome, {userInfo?.name}</h1>
+        <p>Email: {userInfo?.email}</p>
+        <p>Phone: {userInfo?.phone}</p>
+      </main>
     </div>
   );
 }
