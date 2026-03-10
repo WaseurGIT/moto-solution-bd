@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axiosSecure from "../../api/axiosSecure";
+import AdminSidebar from "../../components/admin/AdminSidebar";
 
 const AdminDashboard = () => {
   const { user } = useAuth();
@@ -16,14 +17,9 @@ const AdminDashboard = () => {
   }, [user]);
 
   return (
-    <div className="admin-dashboard flex">
-      <aside className="w-64 bg-gray-300 p-4">
-        <h3>Admin Menu</h3>
-        <ul>
-          <li>Dashboard</li>
-          <li>Add Technician</li>
-          <li>Manage Vehicles</li>
-        </ul>
+    <div className="flex justify-between h-screen">
+      <aside className="w-64 h-screen bg-blue-100 p-4">
+        <AdminSidebar />
       </aside>
       <main className="p-6 flex-1">
         <h1 className="text-3xl font-bold text-red-600">Admin Panel</h1>

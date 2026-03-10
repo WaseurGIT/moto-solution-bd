@@ -3,10 +3,22 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import axiosSecure from "../../api/axiosSecure";
+import { useEffect, useState } from "react";
 
 const BookingCard = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+
+  const [userInfo, setUserInfo] = useState(null);
+
+  useEffect(() => {
+    if (user?.email) {
+      axiosSecure
+        .get(`/users/email/${user.email}`)
+        .then((res) => setUserInfo(res.data))
+        .catch((err) => console.error(err));
+    }
+  }, [user?.email]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,10 +43,7 @@ const BookingCard = () => {
       email,
     };
 
-    const result = await axiosSecure.post(
-      "/bookings",
-      bookingData,
-    );
+    const result = await axiosSecure.post("/bookings", bookingData);
     if (result.data.insertedId) {
       Swal.fire({
         toast: true,
@@ -80,7 +89,7 @@ const BookingCard = () => {
             <input
               type="text"
               name="name"
-              value={user?.displayName}
+              value={userInfo?.name}
               required
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your name"
@@ -171,6 +180,7 @@ const BookingCard = () => {
             <input
               type="tel"
               name="phone"
+              value={userInfo?.phone}
               required
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your phone number"
@@ -184,6 +194,7 @@ const BookingCard = () => {
             <input
               type="email"
               name="email"
+              value={userInfo?.email}
               required
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your email address"

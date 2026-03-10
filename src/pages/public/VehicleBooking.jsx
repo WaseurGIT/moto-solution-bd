@@ -2,12 +2,22 @@ import useAuth from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosSecure from "../../api/axiosSecure";
+import { useEffect, useState } from "react";
 
 const VehicleBooking = () => {
   const { user } = useAuth();
   const location = useLocation();
   const vehicle = location.state;
   const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useState(null);
+  useEffect(() => {
+    if (user?.email) {
+      axiosSecure
+        .get(`/users/email/${user.email}`)
+        .then((res) => setUserInfo(res.data))
+        .catch((err) => console.error(err));
+    }
+  }, [user?.email]);
 
   const handleVehicleBooking = async (e) => {
     e.preventDefault();
@@ -46,19 +56,19 @@ const VehicleBooking = () => {
             confirmButtonText: "OK",
           });
         }
-        form.reset()
-        navigate('/vehicles')
+        form.reset();
+        navigate("/vehicles");
       })
-    .catch((error) => {
-      console.error(error);
-      Swal.fire({
-        title: "Booking Failed!",
-        text: "Something went wrong while booking the vehicle.",
-        icon: "error",
-        confirmButtonColor: "#d33",
-        confirmButtonText: "Try Again",
+      .catch((error) => {
+        console.error(error);
+        Swal.fire({
+          title: "Booking Failed!",
+          text: "Something went wrong while booking the vehicle.",
+          icon: "error",
+          confirmButtonColor: "#d33",
+          confirmButtonText: "Try Again",
+        });
       });
-    });
   };
 
   return (
@@ -76,7 +86,7 @@ const VehicleBooking = () => {
           <input
             type="text"
             name="fullName"
-            defaultValue={user?.displayName}
+            defaultValue={userInfo?.name}
             className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
         </div>
@@ -86,7 +96,7 @@ const VehicleBooking = () => {
           <input
             type="email"
             name="email"
-            defaultValue={user?.email}
+            defaultValue={userInfo?.email}
             placeholder="Enter your email"
             className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
@@ -97,6 +107,7 @@ const VehicleBooking = () => {
           <input
             type="tel"
             name="phone"
+            value={userInfo?.phone}
             placeholder="Enter your phone number"
             className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />

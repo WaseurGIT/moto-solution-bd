@@ -7,7 +7,7 @@ import axiosSecure from "../../api/axiosSecure";
 const VehicleDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, role } = useAuth();
   const [vehicle, setVehicle] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -263,14 +263,16 @@ const VehicleDetails = () => {
           </div>
         </div>
 
-        <div className="mt-8 flex justify-center">
-          <button
-            onClick={handleDelete}
-            className="cursor-pointer px-8 py-3 bg-red-500 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg"
-          >
-            Delete Vehicle
-          </button>
-        </div>
+        {user && role === "admin" ? (
+          <div className="mt-8 flex justify-center">
+            <button
+              onClick={handleDelete}
+              className="cursor-pointer px-8 py-3 bg-red-500 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg"
+            >
+              Delete Vehicle
+            </button>
+          </div>
+        ) : null}
       </div>
     </div>
   );

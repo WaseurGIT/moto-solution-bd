@@ -15,8 +15,6 @@ const Navbar = () => {
     { path: "/", label: "Home" },
     { path: "/vehicles", label: "Vehicles" },
     { path: "/accessories", label: "Accessories" },
-    { path: "/addBooking", label: "Service Booking" },
-    { path: "/addTechnician", label: "Add Technician" },
     ...(user
       ? [
           {
