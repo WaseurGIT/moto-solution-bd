@@ -26,21 +26,24 @@ const BookingCard = () => {
     const name = form.name.value;
     const vehicleType = form.vehicleType.value;
     const model = form.model.value;
-    const category = form.category.value;
+    const categoryData = JSON.parse(form.category.value);
     const date = form.date.value;
     const address = form.address.value;
     const phone = form.phone.value;
     const email = form.email.value;
+    const paymentMethod = form.paymentMethod.value;
 
     const bookingData = {
       name,
       vehicleType,
       model,
-      category,
+      category: categoryData.name,
+      price: categoryData.price,
       date,
       address,
       phone,
       email,
+      paymentMethod,
     };
 
     const result = await axiosSecure.post("/bookings", bookingData);
@@ -66,11 +69,11 @@ const BookingCard = () => {
 
   const vehicleTypes = ["Car", "Bike", "Electric Scooter"];
   const categories = [
-    "Bike Wash",
-    "Car Wash",
-    "Car Repair",
-    "Bike Repair",
-    "Master Service",
+    { name: "Bike Wash", price: "200" },
+    { name: "Car Wash", price: "300" },
+    { name: "Car Repair", price: "500" },
+    { name: "Bike Repair", price: "250" },
+    { name: "Master Service", price: "1000" },
   ];
 
   return (
@@ -133,15 +136,14 @@ const BookingCard = () => {
               Service Category
             </label>
             <select
-              type="text"
               name="category"
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg"
             >
               <option value="">Select service category</option>
               {categories.map((cat) => (
-                <option key={cat} value={cat}>
-                  {cat}
+                <option key={cat.name} value={JSON.stringify(cat)}>
+                  {cat.name} - BDT {cat.price}
                 </option>
               ))}
             </select>
@@ -157,6 +159,22 @@ const BookingCard = () => {
               required
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Select Payment Method
+            </label>
+            <select
+              name="paymentMethod"
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">Select a payment method</option>
+              <option>Credit Card</option>
+              <option>Debit Card</option>
+              <option>Bank Transfer</option>
+            </select>
           </div>
 
           <div>

@@ -97,6 +97,10 @@ const router = createBrowserRouter([
     ),
     children: [
       {
+        index: true,
+        element: <UserProfile />,
+      },
+      {
         path: "profile",
         element: <UserProfile />,
       },

@@ -30,7 +30,9 @@ const VehicleBooking = () => {
     const bookingDate = form.date.value;
     const pickupLocation = form.pickupLocation.value;
     const notes = form.notes.value;
+    const price = form.price.value;
     const paymentMethod = form.paymentMethod.value;
+
 
     const vehicleBookingData = {
       fullName,
@@ -39,6 +41,7 @@ const VehicleBooking = () => {
       bookingDate,
       pickupLocation,
       notes,
+      price,
       paymentMethod,
       vehicleId: vehicle._id,
       vehicleName,
@@ -150,6 +153,17 @@ const VehicleBooking = () => {
             placeholder="Any special request..."
             className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
           ></textarea>
+        </div>
+
+        <div>
+          <label className="block font-semibold mb-1">Price</label>
+          <input
+            type="number"
+            name="price"
+            value={vehicle?.price || ""}
+            readOnly
+            className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-100"
+          />
         </div>
 
         <div>

@@ -114,6 +114,9 @@ const MyBookings = () => {
                       <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">
                         {booking.category}
                       </span>
+                      <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">
+                        {booking.paymentMethod}
+                      </span>
                     </div>
                   </div>
 
@@ -140,6 +143,11 @@ const MyBookings = () => {
                     <div>
                       <p className="text-gray-600 font-semibold">Address</p>
                       <p className="text-gray-900">{booking.address}</p>
+                    </div>
+                    
+                    <div>
+                      <p className="text-gray-600 font-semibold">Price</p>
+                      <p className="text-gray-900 font-bold">{booking.price} BDT</p>
                     </div>
 
                     <div>

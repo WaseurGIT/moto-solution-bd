@@ -147,6 +147,13 @@ const MyVehiclesBookings = () => {
                     </div>
 
                     <div>
+                      <p className="text-gray-600 font-semibold">Price</p>
+                      <p className="text-gray-900 font-bold text-lg">
+                        BDT {booking.price}
+                      </p>
+                    </div>
+
+                    <div>
                       <p className="text-gray-600 font-semibold">Email</p>
                       <p className="text-gray-900 text-xs break-all">
                         {booking.email}
