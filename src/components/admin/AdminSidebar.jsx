@@ -147,6 +147,16 @@ const AdminSidebar = () => {
           <div className="flex items-center gap-2">
             <FaCar className="text-xl text-blue-500" />
             <Link
+              to="/dashboard/admin/addAccessories"
+              className="cursor-pointer text-lg text-blue-500 font-semibold text-left hover:text-blue-700 transition"
+            >
+              Add Accessories
+            </Link>
+          </div>
+          
+          <div className="flex items-center gap-2">
+            <FaCar className="text-xl text-blue-500" />
+            <Link
               to="/dashboard/admin/manageAllAccessories"
               className="cursor-pointer text-lg text-blue-500 font-semibold text-left hover:text-blue-700 transition"
             >
