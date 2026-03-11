@@ -13,7 +13,7 @@ import UserTable from "./UserTable";
 import { FaScrewdriverWrench } from "react-icons/fa6";
 import { GiFullMotorcycleHelmet } from "react-icons/gi";
 
-const AdminSidebar = () => {
+const AdminSidebar = ({ onClose }) => {
   const { user, logOutUser } = useAuth();
   const [userInfo, setUserInfo] = useState(null);
   const navigate = useNavigate();
@@ -51,133 +51,137 @@ const AdminSidebar = () => {
   };
 
   return (
-    <div className="flex gap-6 h-screen">
-      <aside className="w-64 h-screen bg-blue-100 p-4 overflow-y-auto">
-        <div className="flex flex-col items-center mt-12">
-          <img
-            src={
-              userInfo?.photoURL ||
-              "https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
-            }
-            alt="avatar"
-            className="w-10 h-10 rounded-full"
-          />
-          <h1 className="text-lg font-semibold">Welcome, {userInfo?.name}</h1>
-        </div>
-        <div className="flex flex-col space-y-5 mt-8">
-          
-          <div className="flex items-center gap-2">
-            <CiUser className="text-xl text-blue-500" />
-            <Link
-              to="/dashboard/admin"
-              className="text-lg text-blue-500 font-semibold"
-            >
-              Profile
-            </Link>
-          </div>
+    <aside className="w-full h-full bg-blue-100 p-3 sm:p-4 overflow-y-auto">
+      {/* Close button for mobile */}
+      {onClose && (
+        <button
+          onClick={onClose}
+          className="md:hidden block text-right w-full mb-4 text-lg font-semibold text-gray-600"
+        >
+          ✕
+        </button>
+      )}
 
-          <div className="flex items-center gap-2">
-            <AiFillHome className="text-xl text-blue-500" />
-            <Link
-              to="/"
-              className="text-lg text-blue-500 font-semibold hover:text-blue-700 transition"
-            >
-              Home
-            </Link>
-          </div>
+      {/* User Profile Section */}
+      <div className="flex flex-col items-center py-4 md:py-6 md:mt-12">
+        <img
+          src={
+            userInfo?.photoURL ||
+            "https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
+          }
+          alt="avatar"
+          className="w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-blue-500"
+        />
+        <h1 className="text-sm md:text-base font-semibold text-gray-800 mt-2 text-center">
+          {userInfo?.name}
+        </h1>
+      </div>
 
-          <div className="flex items-center gap-2">
-            <FaUsers className="text-xl text-blue-500" />
-            <Link
-              to="/dashboard/admin/users"
-              className="cursor-pointer text-lg text-blue-500 font-semibold text-left hover:text-blue-700 transition"
-            >
-              All Users
-            </Link>
-          </div>
+      {/* Navigation Links */}
+      <div className="flex flex-col space-y-2 md:space-y-5 mt-6 md:mt-8">
+        
+        <Link
+          to="/dashboard/admin"
+          onClick={onClose}
+          className="flex items-center gap-2 md:gap-3 px-2 md:px-3 py-2 md:py-2.5 rounded hover:bg-blue-200 transition"
+        >
+          <CiUser className="text-lg md:text-xl text-blue-500 flex-shrink-0" />
+          <span className="text-xs md:text-base text-blue-500 font-medium">Profile</span>
+        </Link>
 
-          <div className="flex items-center gap-2">
-            <MdMiscellaneousServices className="text-xl text-blue-500" />
-            <Link
-              to="/dashboard/admin/manageAllServices"
-              className="cursor-pointer text-lg text-blue-500 font-semibold text-left hover:text-blue-700 transition"
-            >
-              All Services
-            </Link>
-          </div>
-          
-          <div className="flex items-center gap-2">
-            <MdNoteAlt className="text-xl text-blue-500" />
-            <Link
-              to="/dashboard/admin/serviceBookings"
-              className="cursor-pointer text-lg text-blue-500 font-semibold text-left hover:text-blue-700 transition"
-            >
-              Service Bookings Table
-            </Link>
-          </div>
+        <Link
+          to="/"
+          onClick={onClose}
+          className="flex items-center gap-2 md:gap-3 px-2 md:px-3 py-2 md:py-2.5 rounded hover:bg-blue-200 transition"
+        >
+          <AiFillHome className="text-lg md:text-xl text-blue-500 flex-shrink-0" />
+          <span className="text-xs md:text-base text-blue-500 font-medium hover:text-blue-700">Home</span>
+        </Link>
 
-          <div className="flex items-center gap-2">
-            <FaCar className="text-xl text-blue-500" />
-            <Link
-              to="/dashboard/admin/vehicles"
-              className="cursor-pointer text-lg text-blue-500 font-semibold text-left hover:text-blue-700 transition"
-            >
-              Vehicle Bookings Table
-            </Link>
-          </div>
-          
-          <div className="flex items-center gap-2">
-            <FaScrewdriverWrench className="text-xl text-blue-500" />
-            <Link
-              to="/dashboard/admin/technicians"
-              className="cursor-pointer text-lg text-blue-500 font-semibold text-left hover:text-blue-700 transition"
-            >
-              All Technicians
-            </Link>
-          </div>
+        <Link
+          to="/dashboard/admin/users"
+          onClick={onClose}
+          className="flex items-center gap-2 md:gap-3 px-2 md:px-3 py-2 md:py-2.5 rounded hover:bg-blue-200 transition"
+        >
+          <FaUsers className="text-lg md:text-xl text-blue-500 flex-shrink-0" />
+          <span className="text-xs md:text-base text-blue-500 font-medium hover:text-blue-700">All Users</span>
+        </Link>
 
-          <div className="flex items-center gap-2">
-            <FaScrewdriverWrench className="text-xl text-blue-500" />
-            <Link
-              to="/addTechnician"
-              className="cursor-pointer text-lg text-blue-500 font-semibold text-left hover:text-blue-700 transition"
-            >
-              Add Technitians
-            </Link>
-          </div>
-          
-          <div className="flex items-center gap-2">
-            <GiFullMotorcycleHelmet className="text-xl text-blue-500" />
-            <Link
-              to="/dashboard/admin/addAccessories"
-              className="cursor-pointer text-lg text-blue-500 font-semibold text-left hover:text-blue-700 transition"
-            >
-              Add Accessories
-            </Link>
-          </div>
-          
-          <div className="flex items-center gap-2">
-            <GiFullMotorcycleHelmet className="text-xl text-blue-500" />
-            <Link
-              to="/dashboard/admin/manageAllAccessories"
-              className="cursor-pointer text-lg text-blue-500 font-semibold text-left hover:text-blue-700 transition"
-            >
-              All Accessories
-            </Link>
-          </div>
+        <Link
+          to="/dashboard/admin/manageAllServices"
+          onClick={onClose}
+          className="flex items-center gap-2 md:gap-3 px-2 md:px-3 py-2 md:py-2.5 rounded hover:bg-blue-200 transition"
+        >
+          <MdMiscellaneousServices className="text-lg md:text-xl text-blue-500 flex-shrink-0" />
+          <span className="text-xs md:text-base text-blue-500 font-medium hover:text-blue-700">All Services</span>
+        </Link>
+        
+        <Link
+          to="/dashboard/admin/serviceBookings"
+          onClick={onClose}
+          className="flex items-center gap-2 md:gap-3 px-2 md:px-3 py-2 md:py-2.5 rounded hover:bg-blue-200 transition"
+        >
+          <MdNoteAlt className="text-lg md:text-xl text-blue-500 flex-shrink-0" />
+          <span className="text-xs md:text-base text-blue-500 font-medium hover:text-blue-700">Service Bookings</span>
+        </Link>
 
-          <div className="flex items-center gap-2">
-            <IoMdLogOut className="text-xl text-red-500" />
-            <button
-              onClick={handleLogout}
-              className="cursor-pointer text-lg text-red-500 font-semibold hover:text-red-700 transition"
-            >
-              Logout
-            </button>
-          </div>
-        </div>
-      </aside>
-    </div>
+        <Link
+          to="/dashboard/admin/vehicles"
+          onClick={onClose}
+          className="flex items-center gap-2 md:gap-3 px-2 md:px-3 py-2 md:py-2.5 rounded hover:bg-blue-200 transition"
+        >
+          <FaCar className="text-lg md:text-xl text-blue-500 flex-shrink-0" />
+          <span className="text-xs md:text-base text-blue-500 font-medium hover:text-blue-700">Vehicle Bookings</span>
+        </Link>
+        
+        <Link
+          to="/dashboard/admin/technicians"
+          onClick={onClose}
+          className="flex items-center gap-2 md:gap-3 px-2 md:px-3 py-2 md:py-2.5 rounded hover:bg-blue-200 transition"
+        >
+          <FaScrewdriverWrench className="text-lg md:text-xl text-blue-500 flex-shrink-0" />
+          <span className="text-xs md:text-base text-blue-500 font-medium hover:text-blue-700">Technicians</span>
+        </Link>
+
+        <Link
+          to="/addTechnician"
+          onClick={onClose}
+          className="flex items-center gap-2 md:gap-3 px-2 md:px-3 py-2 md:py-2.5 rounded hover:bg-blue-200 transition"
+        >
+          <FaScrewdriverWrench className="text-lg md:text-xl text-blue-500 flex-shrink-0" />
+          <span className="text-xs md:text-base text-blue-500 font-medium hover:text-blue-700">Add Technician</span>
+        </Link>
+        
+        <Link
+          to="/dashboard/admin/addAccessories"
+          onClick={onClose}
+          className="flex items-center gap-2 md:gap-3 px-2 md:px-3 py-2 md:py-2.5 rounded hover:bg-blue-200 transition"
+        >
+          <GiFullMotorcycleHelmet className="text-lg md:text-xl text-blue-500 flex-shrink-0" />
+          <span className="text-xs md:text-base text-blue-500 font-medium hover:text-blue-700">Add Accessories</span>
+        </Link>
+        
+        <Link
+          to="/dashboard/admin/manageAllAccessories"
+          onClick={onClose}
+          className="flex items-center gap-2 md:gap-3 px-2 md:px-3 py-2 md:py-2.5 rounded hover:bg-blue-200 transition"
+        >
+          <GiFullMotorcycleHelmet className="text-lg md:text-xl text-blue-500 flex-shrink-0" />
+          <span className="text-xs md:text-base text-blue-500 font-medium hover:text-blue-700">Manage Accessories</span>
+        </Link>
+
+        <button
+          onClick={() => {
+            handleLogout();
+            onClose?.();
+          }}
+          className="flex items-center gap-2 md:gap-3 px-2 md:px-3 py-2 md:py-2.5 rounded hover:bg-red-100 transition w-full text-left"
+        >
+          <IoMdLogOut className="text-lg md:text-xl text-red-500 flex-shrink-0" />
+          <span className="text-xs md:text-base text-red-500 font-medium hover:text-red-700">Logout</span>
+        </button>
+      </div>
+    </aside>
   );
 };
 

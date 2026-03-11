@@ -107,15 +107,15 @@ const Login = () => {
   };
 
   return (
-    <div className="my-12 min-h-screen flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl overflow-hidden max-w-5xl w-full">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-3 sm:px-4 py-6 sm:py-12">
+      <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden max-w-5xl w-full">
         <div className="grid md:grid-cols-2 gap-0">
           {/* Left Side - Image */}
-          <div className="hidden md:flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-8">
+          <div className="hidden md:flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-6 md:p-8 lg:p-12">
             <div className="text-center">
-              <div className="mb-8 animate-bounce">
+              <div className="mb-6 md:mb-8 animate-bounce">
                 <svg
-                  className="w-32 h-32 mx-auto text-white"
+                  className="w-24 md:w-32 h-24 md:h-32 mx-auto text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -128,33 +128,33 @@ const Login = () => {
                   ></path>
                 </svg>
               </div>
-              <h2 className="text-4xl font-bold text-white mb-4">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 md:mb-4">
                 Moto Solution
               </h2>
-              <p className="text-blue-100 text-lg mb-2">
+              <p className="text-blue-100 text-sm md:text-base lg:text-lg mb-1 md:mb-2">
                 Your Trusted Motorcycle Partner
               </p>
-              <p className="text-blue-100">
+              <p className="text-blue-100 text-xs md:text-sm">
                 Experience the freedom of the open road
               </p>
             </div>
           </div>
 
           {/* Right Side - Login Form */}
-          <div className="p-8 md:p-12 flex flex-col justify-center">
-            <div className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+          <div className="p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-center">
+            <div className="mb-6 md:mb-8">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-1 md:mb-2">
                 Welcome Back
               </h1>
-              <p className="text-gray-600">
+              <p className="text-xs sm:text-sm md:text-base text-gray-600">
                 Sign in to your account to continue
               </p>
             </div>
 
             {/* Email Login Form */}
-            <form onSubmit={handleEmailLogin} className="space-y-5 mb-6">
+            <form onSubmit={handleEmailLogin} className="space-y-4 md:space-y-5 mb-6">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                   Email Address
                 </label>
                 <input
@@ -162,12 +162,12 @@ const Login = () => {
                   name="email"
                   placeholder="Enter your email"
                   required
-                  className="input input-bordered w-full focus:input-primary"
+                  className="input input-bordered w-full text-sm focus:input-primary focus:outline-none"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                   Password
                 </label>
                 <div className="relative">
@@ -176,45 +176,46 @@ const Login = () => {
                     required
                     type="password"
                     name="password"
-                    className="input input-bordered w-full focus:input-primary"
+                    className="input input-bordered w-full text-sm focus:input-primary focus:outline-none"
                   />
                 </div>
               </div>
 
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input type="checkbox" className="checkbox checkbox-sm" />
-                  <span className="text-sm text-gray-700">Remember me</span>
+                  <span className="text-xs sm:text-sm text-gray-700">Remember me</span>
                 </label>
                 <a
                   href="#"
-                  className="text-sm text-blue-600 hover:text-blue-700 font-semibold"
+                  className="text-xs sm:text-sm text-blue-600 hover:text-blue-700 font-semibold"
                 >
                   Forgot password?
                 </a>
               </div>
 
-              <button type="submit" className="btn btn-primary w-full mt-4">
-                "Sign In"
+              <button type="submit" className="btn btn-primary w-full mt-2 md:mt-4 text-sm sm:text-base">
+                Sign In
               </button>
             </form>
 
-            <div className="flex items-center gap-4 mb-6">
+            <div className="flex items-center gap-3 md:gap-4 mb-6">
               <div className="flex-1 border-t border-gray-300"></div>
-              <span className="text-gray-500 text-sm">OR</span>
+              <span className="text-gray-500 text-xs sm:text-sm">OR</span>
               <div className="flex-1 border-t border-gray-300"></div>
             </div>
 
             <button
               onClick={handleGoogleLogin}
-              className="btn btn-outline btn-lg w-full gap-2 mb-6"
+              className="btn btn-outline w-full gap-2 mb-6 text-sm sm:text-base h-10 md:h-12"
             >
-              <FcGoogle className="text-2xl" />
-              Continue with Google
+              <FcGoogle className="text-xl md:text-2xl" />
+              <span className="hidden sm:inline">Continue with Google</span>
+              <span className="sm:hidden">Google</span>
             </button>
 
             <div className="text-center">
-              <p className="text-gray-600">
+              <p className="text-xs sm:text-sm text-gray-600">
                 Don't have an account?{" "}
                 <Link
                   to="/register"

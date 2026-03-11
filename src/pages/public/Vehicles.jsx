@@ -79,19 +79,19 @@ const Vehicles = () => {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
+    <div className="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-8 md:py-12">
       <div id="vehiclesTitle">
-        <h1 className="text-2xl font-semibold text-blue-500 text-center">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-500 text-center mb-6 sm:mb-8 md:mb-10">
           Pick your favourite vehicle
         </h1>
       </div>
 
-      <div id="vehicleCategories" className="flex items-center justify-between">
+      <div id="vehicleCategories" className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 md:mb-10">
         {categories.map((category) => (
-          <div key={category} className=" mt-6">
+          <div key={category}>
             <button
               onClick={() => handleCategories(category)}
-              className="categoryBtn text-md font-semibold cursor-pointer hover:bg-blue-200 rounded-lg p-2"
+              className="categoryBtn text-xs sm:text-sm md:text-base font-semibold cursor-pointer hover:bg-blue-200 hover:text-blue-700 bg-white border border-gray-300 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 transition"
             >
               {category}
             </button>
@@ -99,22 +99,24 @@ const Vehicles = () => {
         ))}
       </div>
 
-      <div id="vehicleGrid" className="grid grid-cols-3 gap-2">
+      <div id="vehicleGrid" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
         {vehicles.map((vehicle) => (
           <Link to={`/vehicles/${vehicle._id}`} key={vehicle._id}>
-            <div className="vehicleCard border cursor-pointer border-gray-300 rounded-lg p-4 m-4">
+            <div className="vehicleCard border border-gray-300 rounded-lg overflow-hidden hover:shadow-lg hover:border-blue-400 transition duration-300 h-full">
               <img
                 src={vehicle.image}
                 alt={vehicle.name}
-                className="w-full h-48 object-cover rounded-lg"
+                className="w-full h-40 sm:h-48 md:h-56 object-cover hover:scale-105 transition duration-300"
               />
-              <h3 className="text-lg font-semibold mt-2">{vehicle.name}</h3>
-              <p className="text-gray-600">
-                {vehicle.company} - {vehicle.model}
-              </p>
-              <p className="text-xl font-bold text-green-500">
-                Tk {vehicle.price.toLocaleString()}
-              </p>
+              <div className="p-3 sm:p-4">
+                <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-800 line-clamp-2">{vehicle.name}</h3>
+                <p className="text-xs sm:text-sm text-gray-600 mt-1">
+                  {vehicle.company} - {vehicle.model}
+                </p>
+                <p className="text-base sm:text-lg md:text-xl font-bold text-green-500 mt-2">
+                  Tk {vehicle.price.toLocaleString()}
+                </p>
+              </div>
             </div>
           </Link>
         ))}

@@ -70,15 +70,15 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 py-12">
-      <div className="bg-white rounded-2xl shadow-2xl overflow-hidden max-w-5xl w-full">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-3 sm:px-4 py-6 sm:py-12">
+      <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden max-w-5xl w-full">
         <div className="grid md:grid-cols-2 gap-0">
           {/* Left Side - Image */}
-          <div className="hidden md:flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-8">
+          <div className="hidden md:flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-6 md:p-8 lg:p-12">
             <div className="text-center">
-              <div className="mb-8 animate-bounce">
+              <div className="mb-6 md:mb-8 animate-bounce">
                 <svg
-                  className="w-32 h-32 mx-auto text-white"
+                  className="w-24 md:w-32 h-24 md:h-32 mx-auto text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -91,40 +91,40 @@ const Register = () => {
                   ></path>
                 </svg>
               </div>
-              <h2 className="text-4xl font-bold text-white mb-4">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 md:mb-4">
                 Join Moto Solution
               </h2>
-              <p className="text-blue-100 text-lg mb-2">
+              <p className="text-blue-100 text-sm md:text-base lg:text-lg mb-1 md:mb-2">
                 Start Your Journey Today
               </p>
-              <p className="text-blue-100">
+              <p className="text-blue-100 text-xs md:text-sm">
                 Get instant access to our premium motorcycle fleet
               </p>
             </div>
           </div>
 
           {/* Right Side - Register Form */}
-          <div className="p-8 md:p-12">
-            <div className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+          <div className="p-4 sm:p-6 md:p-8 lg:p-12">
+            <div className="mb-4 md:mb-8">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-1 md:mb-2">
                 Create Account
               </h1>
-              <p className="text-gray-600">Join thousands of happy customers</p>
+              <p className="text-xs sm:text-sm md:text-base text-gray-600">Join thousands of happy customers</p>
             </div>
 
             {/* Error Message */}
             {error && (
-              <div className="bg-red-100 text-red-700 p-3 rounded mb-4">
+              <div className="bg-red-100 text-red-700 p-2 sm:p-3 rounded mb-3 md:mb-4 text-xs sm:text-sm">
                 {error}
               </div>
             )}
 
             {/* Register Form */}
-            <form onSubmit={handleRegister} className="space-y-2 mb-4">
+            <form onSubmit={handleRegister} className="space-y-3 md:space-y-4 mb-4">
               {/* Name Fields */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                     First Name
                   </label>
                   <input
@@ -132,11 +132,11 @@ const Register = () => {
                     name="firstName"
                     placeholder="First name"
                     required
-                    className="input input-bordered w-full focus:input-primary"
+                    className="input input-bordered text-sm w-full focus:input-primary focus:outline-none"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                     Last Name
                   </label>
                   <input
@@ -144,13 +144,13 @@ const Register = () => {
                     name="lastName"
                     placeholder="Last name"
                     required
-                    className="input input-bordered w-full focus:input-primary"
+                    className="input input-bordered text-sm w-full focus:input-primary focus:outline-none"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                   Email Address
                 </label>
                 <input
@@ -158,24 +158,24 @@ const Register = () => {
                   name="email"
                   placeholder="Enter your email"
                   required
-                  className="input input-bordered w-full focus:input-primary"
+                  className="input input-bordered text-sm w-full focus:input-primary focus:outline-none"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                   Phone Number
                 </label>
                 <input
                   type="tel"
                   name="phone"
                   placeholder="+880 1XXXXXXXXX"
-                  className="input input-bordered w-full focus:input-primary"
+                  className="input input-bordered text-sm w-full focus:input-primary focus:outline-none"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                   Password
                 </label>
                 <div className="relative">
@@ -184,23 +184,23 @@ const Register = () => {
                     name="password"
                     placeholder="Create a password"
                     required
-                    className="input input-bordered w-full focus:input-primary"
+                    className="input input-bordered text-sm w-full focus:input-primary focus:outline-none"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-3 text-gray-600"
+                    className="absolute right-3 top-3 text-gray-600 text-lg"
                   >
                     {showPassword ? <IoIosEyeOff /> : <IoIosEye />}
                   </button>
                 </div>
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-gray-500 mt-0.5 md:mt-1">
                   At least 6 characters
                 </p>
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                   Confirm Password
                 </label>
                 <div className="relative">
@@ -209,26 +209,26 @@ const Register = () => {
                     name="confirmPassword"
                     placeholder="Confirm your password"
                     required
-                    className="input input-bordered w-full focus:input-primary"
+                    className="input input-bordered text-sm w-full focus:input-primary focus:outline-none"
                   />
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-3 top-3 text-gray-600"
+                    className="absolute right-3 top-3 text-gray-600 text-lg"
                   >
                     {showConfirmPassword ? <IoIosEyeOff /> : <IoIosEye />}
                   </button>
                 </div>
               </div>
 
-              <label className="flex items-start gap-3 cursor-pointer my-4">
+              <label className="flex items-start gap-2 sm:gap-3 cursor-pointer my-3 md:my-4">
                 <input
                   type="checkbox"
                   checked={agreeTerms}
                   onChange={(e) => setAgreeTerms(e.target.checked)}
-                  className="checkbox checkbox-sm mt-1"
+                  className="checkbox checkbox-sm mt-0.5 flex-shrink-0"
                 />
-                <span className="text-sm text-gray-700">
+                <span className="text-xs sm:text-sm text-gray-700 leading-snug">
                   I agree to the{" "}
                   <a
                     href="#"
@@ -246,13 +246,13 @@ const Register = () => {
                 </span>
               </label>
 
-              <button type="submit" className="btn btn-primary w-full mt-4">
+              <button type="submit" className="btn btn-primary w-full mt-2 md:mt-4 text-sm sm:text-base h-10 md:h-12">
                 Create Account
               </button>
             </form>
 
             <div className="text-center">
-              <p className="text-gray-600">
+              <p className="text-xs sm:text-sm text-gray-600">
                 Already have an account?{" "}
                 <Link
                   to="/login"
