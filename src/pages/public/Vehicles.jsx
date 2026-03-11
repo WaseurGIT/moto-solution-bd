@@ -64,42 +64,32 @@ const Vehicles = () => {
       duration: 0.8,
       stagger: 0.1,
     });
-
-    gsap.from(".vehicleCard", {
-      scrollTrigger: {
-        trigger: "#vehicleGrid",
-        start: "top 80%",
-        end: "top 20%",
-      },
-      opacity: 0,
-      y: 100,
-      duration: 1,
-      stagger: 0.15,
-    });
   }, []);
 
   return (
     <div className="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-8 md:py-12">
       <div id="vehiclesTitle">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-500 text-center mb-6 sm:mb-8 md:mb-10">
+        <h1 className="text-3xl sm:text-3xl md:text-4xl font-bold text-blue-500 text-center mb-6 sm:mb-8 md:mb-10">
           Pick your favourite vehicle
         </h1>
       </div>
 
-      <div id="vehicleCategories" className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 md:mb-10">
+      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-6 md:mb-8">
         {categories.map((category) => (
-          <div key={category}>
-            <button
-              onClick={() => handleCategories(category)}
-              className="categoryBtn text-xs sm:text-sm md:text-base font-semibold cursor-pointer hover:bg-blue-200 hover:text-blue-700 bg-white border border-gray-300 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 transition"
-            >
-              {category}
-            </button>
-          </div>
+          <button
+            onClick={() => handleCategories(category)}
+            key={category}
+            className="py-1.5 sm:py-2 px-3 sm:px-4 md:px-5 text-xs sm:text-sm md:text-base active:bg-blue-500 active:text-white hover:bg-blue-100 cursor-pointer rounded-full transition border border-blue-200"
+          >
+            {category}
+          </button>
         ))}
       </div>
 
-      <div id="vehicleGrid" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+      <div
+        id="vehicleGrid"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6"
+      >
         {vehicles.map((vehicle) => (
           <Link to={`/vehicles/${vehicle._id}`} key={vehicle._id}>
             <div className="vehicleCard border border-gray-300 rounded-lg overflow-hidden hover:shadow-lg hover:border-blue-400 transition duration-300 h-full">
@@ -109,7 +99,9 @@ const Vehicles = () => {
                 className="w-full h-40 sm:h-48 md:h-56 object-cover hover:scale-105 transition duration-300"
               />
               <div className="p-3 sm:p-4">
-                <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-800 line-clamp-2">{vehicle.name}</h3>
+                <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-800 line-clamp-2">
+                  {vehicle.name}
+                </h3>
                 <p className="text-xs sm:text-sm text-gray-600 mt-1">
                   {vehicle.company} - {vehicle.model}
                 </p>

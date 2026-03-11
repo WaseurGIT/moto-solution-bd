@@ -70,15 +70,16 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-3 sm:px-4 py-6 sm:py-12">
-      <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden max-w-5xl w-full">
-        <div className="grid md:grid-cols-2 gap-0">
-          {/* Left Side - Image */}
-          <div className="hidden md:flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-6 md:p-8 lg:p-12">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-gray-100 px-4 py-10">
+      <div className="bg-white rounded-2xl shadow-xl overflow-hidden max-w-5xl w-full">
+        <div className="grid md:grid-cols-2">
+
+          {/* Left Section */}
+          <div className="hidden md:flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-10">
             <div className="text-center">
-              <div className="mb-6 md:mb-8 animate-bounce">
+              <div className="mb-8 animate-bounce">
                 <svg
-                  className="w-24 md:w-32 h-24 md:h-32 mx-auto text-white"
+                  className="w-28 h-28 mx-auto text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -88,43 +89,47 @@ const Register = () => {
                     strokeLinejoin="round"
                     strokeWidth="1"
                     d="M13 10V3L4 14h7v7l9-11h-7z"
-                  ></path>
+                  />
                 </svg>
               </div>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 md:mb-4">
+
+              <h2 className="text-4xl font-bold text-white mb-3">
                 Join Moto Solution
               </h2>
-              <p className="text-blue-100 text-sm md:text-base lg:text-lg mb-1 md:mb-2">
+
+              <p className="text-blue-100 text-lg">
                 Start Your Journey Today
               </p>
-              <p className="text-blue-100 text-xs md:text-sm">
+
+              <p className="text-blue-200 text-sm mt-2">
                 Get instant access to our premium motorcycle fleet
               </p>
             </div>
           </div>
 
-          {/* Right Side - Register Form */}
-          <div className="p-4 sm:p-6 md:p-8 lg:p-12">
-            <div className="mb-4 md:mb-8">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-1 md:mb-2">
+          {/* Register Form */}
+          <div className="p-8 md:p-12">
+
+            <div className="mb-8">
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
                 Create Account
               </h1>
-              <p className="text-xs sm:text-sm md:text-base text-gray-600">Join thousands of happy customers</p>
+              <p className="text-gray-600 text-sm">
+                Join thousands of happy customers
+              </p>
             </div>
 
-            {/* Error Message */}
             {error && (
-              <div className="bg-red-100 text-red-700 p-2 sm:p-3 rounded mb-3 md:mb-4 text-xs sm:text-sm">
+              <div className="bg-red-100 text-red-700 p-3 rounded-lg mb-4 text-sm">
                 {error}
               </div>
             )}
 
-            {/* Register Form */}
-            <form onSubmit={handleRegister} className="space-y-3 md:space-y-4 mb-4">
-              {/* Name Fields */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
+            <form onSubmit={handleRegister} className="space-y-5">
+
+              <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
+                  <label className="text-sm font-semibold text-gray-700 mb-2 block">
                     First Name
                   </label>
                   <input
@@ -132,11 +137,12 @@ const Register = () => {
                     name="firstName"
                     placeholder="First name"
                     required
-                    className="input input-bordered text-sm w-full focus:input-primary focus:outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
                   />
                 </div>
+
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
+                  <label className="text-sm font-semibold text-gray-700 mb-2 block">
                     Last Name
                   </label>
                   <input
@@ -144,13 +150,13 @@ const Register = () => {
                     name="lastName"
                     placeholder="Last name"
                     required
-                    className="input input-bordered text-sm w-full focus:input-primary focus:outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
+                <label className="text-sm font-semibold text-gray-700 mb-2 block">
                   Email Address
                 </label>
                 <input
@@ -158,24 +164,25 @@ const Register = () => {
                   name="email"
                   placeholder="Enter your email"
                   required
-                  className="input input-bordered text-sm w-full focus:input-primary focus:outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
                 />
               </div>
 
               <div>
-                <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
+                <label className="text-sm font-semibold text-gray-700 mb-2 block">
                   Phone Number
                 </label>
                 <input
                   type="tel"
                   name="phone"
                   placeholder="+880 1XXXXXXXXX"
-                  className="input input-bordered text-sm w-full focus:input-primary focus:outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
                 />
               </div>
 
+              {/* Password */}
               <div>
-                <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
+                <label className="text-sm font-semibold text-gray-700 mb-2 block">
                   Password
                 </label>
                 <div className="relative">
@@ -184,84 +191,89 @@ const Register = () => {
                     name="password"
                     placeholder="Create a password"
                     required
-                    className="input input-bordered text-sm w-full focus:input-primary focus:outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
                   />
+
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-3 text-gray-600 text-lg"
+                    className="absolute right-3 top-3 text-xl text-gray-500"
                   >
                     {showPassword ? <IoIosEyeOff /> : <IoIosEye />}
                   </button>
                 </div>
-                <p className="text-xs text-gray-500 mt-0.5 md:mt-1">
+
+                <p className="text-xs text-gray-500 mt-1">
                   At least 6 characters
                 </p>
               </div>
 
+              {/* Confirm Password */}
               <div>
-                <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
+                <label className="text-sm font-semibold text-gray-700 mb-2 block">
                   Confirm Password
                 </label>
+
                 <div className="relative">
                   <input
                     type={showConfirmPassword ? "text" : "password"}
                     name="confirmPassword"
                     placeholder="Confirm your password"
                     required
-                    className="input input-bordered text-sm w-full focus:input-primary focus:outline-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
                   />
+
                   <button
                     type="button"
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-3 top-3 text-gray-600 text-lg"
+                    onClick={() =>
+                      setShowConfirmPassword(!showConfirmPassword)
+                    }
+                    className="absolute right-3 top-3 text-xl text-gray-500"
                   >
                     {showConfirmPassword ? <IoIosEyeOff /> : <IoIosEye />}
                   </button>
                 </div>
               </div>
 
-              <label className="flex items-start gap-2 sm:gap-3 cursor-pointer my-3 md:my-4">
+              <label className="flex items-start gap-3 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={agreeTerms}
                   onChange={(e) => setAgreeTerms(e.target.checked)}
-                  className="checkbox checkbox-sm mt-0.5 flex-shrink-0"
+                  className="checkbox checkbox-sm mt-1"
                 />
-                <span className="text-xs sm:text-sm text-gray-700 leading-snug">
+
+                <span className="text-sm text-gray-700">
                   I agree to the{" "}
-                  <a
-                    href="#"
-                    className="text-blue-600 hover:text-blue-700 font-semibold"
-                  >
+                  <a className="text-blue-600 font-semibold hover:text-blue-700">
                     Terms of Service
                   </a>{" "}
                   and{" "}
-                  <a
-                    href="#"
-                    className="text-blue-600 hover:text-blue-700 font-semibold"
-                  >
+                  <a className="text-blue-600 font-semibold hover:text-blue-700">
                     Privacy Policy
                   </a>
                 </span>
               </label>
 
-              <button type="submit" className="btn btn-primary w-full mt-2 md:mt-4 text-sm sm:text-base h-10 md:h-12">
+              <button
+                type="submit"
+                className="w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition shadow-md"
+              >
                 Create Account
               </button>
+
             </form>
 
-            <div className="text-center">
-              <p className="text-xs sm:text-sm text-gray-600">
-                Already have an account?{" "}
-                <Link
-                  to="/login"
-                  className="text-blue-600 hover:text-blue-700 font-semibold"
-                >
-                  Login
-                </Link>
-              </p>
-            </div>
+            <p className="text-center text-sm text-gray-600 mt-6">
+              Already have an account?{" "}
+              <Link
+                to="/login"
+                className="text-blue-600 font-semibold hover:text-blue-700"
+              >
+                Login
+              </Link>
+            </p>
+
           </div>
         </div>
       </div>
