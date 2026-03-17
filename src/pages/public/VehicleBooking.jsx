@@ -171,7 +171,7 @@ const VehicleBooking = () => {
         </div>
 
         <div>
-          <label className="block text-sm sm:text-base font-semibold mb-1.5 md:mb-2">Price (Read Only)</label>
+          <label className="block text-sm sm:text-base font-semibold mb-1.5 md:mb-2">Price</label>
           <input
             type="number"
             name="price"

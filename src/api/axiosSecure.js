@@ -1,15 +1,15 @@
 import axios from "axios";
 
 const axiosSecure = axios.create({
-  // baseURL: "http://localhost:5000",
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: "http://localhost:5000",
+  // baseURL: import.meta.env.VITE_API_BASE_URL,
   withCredentials: true,
 });
 
 axiosSecure.interceptors.request.use((config) => {
   const token = localStorage.getItem("access-token");
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.authorization = `Bearer ${token}`;
   }
   return config;
 });

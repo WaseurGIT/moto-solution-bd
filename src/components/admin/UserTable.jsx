@@ -49,6 +49,9 @@ const UserTable = () => {
               <th className="p-3 border">#</th>
               <th className="p-3 border">Name</th>
               <th className="p-3 border">Email</th>
+              <th className="p-3 border">Phone</th>
+              <th className="p-3 border">Since</th>
+              <th className="p-3 border">Last Logged In</th>
               <th className="p-3 border">Role</th>
               <th className="p-3 border">Action</th>
             </tr>
@@ -60,6 +63,9 @@ const UserTable = () => {
                 <td className="border p-2">{index + 1}</td>
                 <td className="border p-2">{user.name}</td>
                 <td className="border p-2">{user.email}</td>
+                <td className="border p-2">{user.phone}</td>
+                <td className="border p-2">{user.createdAt}</td>
+                <td className="border p-2">{user.lastLoggedIn}</td>
                 <td className="border p-2">{user.role || "user"}</td>
 
                 <td className="border p-2">

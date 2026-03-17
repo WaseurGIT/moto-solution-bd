@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
@@ -39,6 +39,7 @@ const Register = () => {
         email: result.user.email,
         uid: result.user.uid,
         phone: phone,
+        createdAt: new Date().toISOString().split("T")[0],
         role: "user",
       };
       await axiosSecure.post("/users", usereData);
@@ -47,8 +48,6 @@ const Register = () => {
       });
 
       localStorage.setItem("access-token", tokenResponse.data.token);
-
-      navigate("/dashboard/user");
       Swal.fire({
         toast: true,
         position: "top-end",
@@ -73,8 +72,6 @@ const Register = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-gray-100 px-4 py-10">
       <div className="bg-white rounded-2xl shadow-xl overflow-hidden max-w-5xl w-full">
         <div className="grid md:grid-cols-2">
-
-          {/* Left Section */}
           <div className="hidden md:flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-10">
             <div className="text-center">
               <div className="mb-8 animate-bounce">
@@ -107,9 +104,7 @@ const Register = () => {
             </div>
           </div>
 
-          {/* Register Form */}
           <div className="p-8 md:p-12">
-
             <div className="mb-8">
               <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
                 Create Account
@@ -180,7 +175,6 @@ const Register = () => {
                 />
               </div>
 
-              {/* Password */}
               <div>
                 <label className="text-sm font-semibold text-gray-700 mb-2 block">
                   Password
@@ -208,7 +202,6 @@ const Register = () => {
                 </p>
               </div>
 
-              {/* Confirm Password */}
               <div>
                 <label className="text-sm font-semibold text-gray-700 mb-2 block">
                   Confirm Password

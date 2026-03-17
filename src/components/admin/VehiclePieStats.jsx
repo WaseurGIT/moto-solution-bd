@@ -16,12 +16,12 @@ const VehiclePieStats = () => {
       const vehicleCount = {};
 
       bookings.forEach((booking) => {
-        const name = booking.vehicleName || booking.vehicle || "Unknown";
+        const category = booking.vehicleName || booking.vehicle || "Unknown";
 
-        if (vehicleCount[name]) {
-          vehicleCount[name] += 1;
+        if (vehicleCount[category]) {
+          vehicleCount[category] += 1;
         } else {
-          vehicleCount[name] = 1;
+          vehicleCount[category] = 1;
         }
       });
 

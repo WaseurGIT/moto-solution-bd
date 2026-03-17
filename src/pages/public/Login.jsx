@@ -20,6 +20,7 @@ const Login = () => {
         name: result.user.displayName,
         email: result.user.email,
         uid: result.user.uid,
+        createdAt: new Date().toISOString().split("T")[0],
       };
 
       const tokenResponse = await axiosSecure.post("/jwt", {
@@ -64,6 +65,7 @@ const Login = () => {
         email: res.user.email,
         uid: res.user.uid,
         role: "user",
+        lastLoggedIn: new Date().toISOString().split("T")[0],
       };
       await axiosSecure.post("/users", userData);
       const tokenResponse = await axiosSecure.post("/jwt", {
@@ -103,7 +105,6 @@ const Login = () => {
       <div className="bg-white rounded-2xl shadow-xl overflow-hidden max-w-5xl w-full">
         <div className="grid md:grid-cols-2">
 
-          {/* Left Side */}
           <div className="hidden md:flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 p-10">
             <div className="text-center">
               <div className="mb-8 animate-bounce">
@@ -136,9 +137,7 @@ const Login = () => {
             </div>
           </div>
 
-          {/* Right Side */}
           <div className="p-8 md:p-12 flex flex-col justify-center">
-
             <div className="mb-8">
               <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
                 Welcome Back 👋
