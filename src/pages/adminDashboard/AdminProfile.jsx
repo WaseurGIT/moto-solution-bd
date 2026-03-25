@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axiosSecure from "../../api/axiosSecure";
 import ServicePieStats from "../../components/admin/ServicePieStats";
 import VehiclePieStats from "../../components/admin/VehiclePieStats";
 import TechnicianRolePieStats from "../../components/admin/TechnicianRolePieStats";
 import AccessoriesPieStats from "../../components/admin/AccessoriesPieStats";
+import VehicleStatCard from "./StatCards/VehicleStatCard";
+import TechnicianStatCard from "./StatCards/TechnicianStatCard";
+import AccessoriesStatCard from "./StatCards/AccessoriesStatCard";
 
 const AdminProfile = () => {
   const { user } = useAuth();
@@ -36,14 +39,14 @@ const AdminProfile = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
-      <div className="mb-12">
+      <div className="mb-6">
         <h1 className="text-4xl font-bold text-gray-800">Admin Dashboard</h1>
         <p className="text-gray-500 mt-2">
           Monitor your platform activity and analytics
         </p>
       </div>
 
-      <div className="bg-white shadow-lg rounded-2xl p-8 mb-12 flex items-center gap-8 max-w-4xl">
+      <div className="bg-white shadow-lg rounded-2xl p-4 mb-8 flex items-center gap-8 max-w-4xl">
         {user?.photoURL ? (
           <img
             src={user.photoURL}
@@ -83,6 +86,14 @@ const AdminProfile = () => {
         </div>
       </div>
 
+      {/* stats */}
+
+      <div className="flex items-center justify-around mb-8 flex-wrap gap-6">
+        <VehicleStatCard/>
+        <TechnicianStatCard/>
+        <AccessoriesStatCard/>
+      </div>
+
       {/* ANALYTICS TITLE */}
       <div className="mb-6">
         <h2 className="text-2xl font-semibold text-gray-800">
@@ -91,7 +102,6 @@ const AdminProfile = () => {
       </div>
 
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
-   
         <div className="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
           <h3 className="text-lg font-semibold text-gray-700 mb-6 text-center">
             Service Usage
