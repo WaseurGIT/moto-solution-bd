@@ -32,6 +32,7 @@ import ManageServices from "./pages/adminDashboard/ManageServices.jsx";
 import AddAccesories from "./pages/adminDashboard/AddAccesories.jsx";
 import ManageAllAccessories from "./pages/adminDashboard/ManageAllAccessories.jsx";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
