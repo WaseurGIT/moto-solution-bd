@@ -39,7 +39,6 @@ const Register = () => {
         email: result.user.email,
         uid: result.user.uid,
         phone: phone,
-        createdAt: new Date().toISOString().split("T")[0],
         role: "user",
       };
       await axiosSecure.post("/users", usereData);

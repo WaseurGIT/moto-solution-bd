@@ -20,7 +20,6 @@ const Login = () => {
         name: result.user.displayName,
         email: result.user.email,
         uid: result.user.uid,
-        createdAt: new Date().toISOString().split("T")[0],
       };
 
       const tokenResponse = await axiosSecure.post("/jwt", {
@@ -65,7 +64,6 @@ const Login = () => {
         email: res.user.email,
         uid: res.user.uid,
         role: "user",
-        lastLoggedIn: new Date().toISOString().split("T")[0],
       };
       await axiosSecure.post("/users", userData);
       const tokenResponse = await axiosSecure.post("/jwt", {
