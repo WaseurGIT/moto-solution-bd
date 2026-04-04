@@ -57,7 +57,7 @@ const Technitians = () => {
             >
               <div className="aspect-square overflow-hidden bg-gray-200 w-full">
                 <img
-                  src={tech.img}
+                  src={tech.profileImage}
                   alt={tech.name}
                   className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
                 />

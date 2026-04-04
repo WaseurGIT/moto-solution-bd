@@ -91,7 +91,7 @@ const AllTechnicians = () => {
                 </td>
                 <td className="border border-gray-300 p-3">
                   <img
-                    src={technician.img}
+                    src={technician.profileImage}
                     alt={technician.name}
                     className="w-10 h-10 rounded object-cover"
                   />
